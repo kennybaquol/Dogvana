@@ -1,14 +1,15 @@
 import * as usersService from '../../utilities/users-service'
+import SearchBar from '../../components/SearchBar/SearchBar'
 
-export default function OrderHistoryPage(){
+export default function Home(){
     async function handleCheckToken(){
         const expDate = await usersService.checkToken()
         console.log(expDate)
     }
     return(
         <>
-            <h1>OrderHistoryPage</h1>
-            <button onClick={handleCheckToken}>Check When My Login Expires</button>
+            <h1>Home</h1>
+            <SearchBar />
         </>
     )
 }
