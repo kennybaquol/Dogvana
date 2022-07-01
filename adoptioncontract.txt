@@ -1,0 +1,3 @@
+Are you a piece of shit? (yes/no)
+if(yes){console.log('you can not have the dog')}
+else{console.log('congrats')}
