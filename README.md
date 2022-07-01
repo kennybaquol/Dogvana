@@ -1,3 +1,0 @@
-Dogvana
-
-Used Dogs online
