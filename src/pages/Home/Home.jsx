@@ -1,5 +1,7 @@
 import * as usersService from '../../utilities/users-service'
 import SearchBar from '../../components/SearchBar/SearchBar'
+import PetCategoryCards from '../../components/PetCategoryCards/PetCategoryCards'
+import AvailablePets from '../../components/AvailablePets/AvailablePets'
 
 export default function Home(){
     async function handleCheckToken(){
@@ -10,6 +12,8 @@ export default function Home(){
         <>
             <h1>Home</h1>
             <SearchBar />
+            <PetCategoryCards />
+            <AvailablePets />
         </>
     )
 }
