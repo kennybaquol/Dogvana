@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import { Link } from 'react-router-dom'
+import './SearchBar.css'
 
 export default function SearchBar() {
     const [newSearch, setNewSearch] = useState('')
@@ -15,6 +17,7 @@ export default function SearchBar() {
         getAnimals();
     }, []);
 
+
     function handleChange(event) {
         setNewSearch({ ...newSearch, [event.target.name]: event.target.value })
     }
@@ -24,7 +27,7 @@ export default function SearchBar() {
             <form>
                 <input type="text" placeholder="Search Terrier, Kitten, etc." onChange={handleChange} />
                 <input type="text" placeholder="Enter your zip/address" onChange={handleChange} />
-                <input type="submit" value="🔍" />
+                <Link className="magnifying-glass"to="/search">🔍</Link>
                 <br />
                 {/* BELOW IS TEMPORARY, REPLACE WITH ANIMALCARDCOMPONENT -KB */}
                 {currentAnimals.join(',')}
