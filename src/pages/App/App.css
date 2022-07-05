@@ -7,3 +7,56 @@
 .App {
   text-align: center;
 }
+
+input {
+  background-color: #d9cae5 !important;
+  margin-bottom: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: 30px;
+  width: 250px;
+  padding: 10px;
+}
+
+label {
+  margin: 5px;
+  align-self: flex-start;
+  margin-left: 10px;
+}
+
+button {
+  margin: 25px;
+  background: transparent;
+  color: inherit;
+  text-decoration: inherit;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 45px;
+  max-width: 100%;
+  padding: 11px 30px;
+  border: 2px solid #8208e6;
+  border-radius: 23px;
+  background-color: #8208e6;
+  -webkit-box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+  box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  -webkit-appearance: none;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: all .2s ease-out;
+}
+
+button:hover{
+  background: #3c026c;
+  transform: scale(1.05);
+}
