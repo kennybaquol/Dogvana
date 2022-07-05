@@ -1,0 +1,23 @@
+.pet-category-cards span{
+    align-items: center;
+    background: #fff;
+    border: 1px solid #d2d1d3;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px #0000000d;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    height: auto;
+    justify-content: center;
+    padding: 50px;
+    width: 10%;
+}
+
+.pet-category-cards{
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 30%;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 30px;
+}
