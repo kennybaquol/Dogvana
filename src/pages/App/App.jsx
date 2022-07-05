@@ -17,7 +17,6 @@ const shuffleAnimals = (array) => {
   }
 }
 
-export default function App() {
 
   const [user, setUser] = useState(getUser())
   const [animalData, setAnimalData] = useState([]) 
@@ -58,6 +57,8 @@ export default function App() {
   //   })()
   // })
 
+export default function App(){
+    
   return (
     <main className="App">
       {user ?
