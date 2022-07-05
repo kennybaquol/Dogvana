@@ -11,7 +11,6 @@ export default function AuthPage({setUser}){
             <h1>AuthPage</h1>
             <SignupForm setUser={setUser}/>
             <LoginForm setUser={setUser}/>
-            <GoogleLoginForm />
         </main>
     )
 }
