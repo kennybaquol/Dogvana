@@ -9,7 +9,8 @@ import { getUser } from '../../utilities/users-service'
 
 
 
-export default function App()
+export default function App(){
+    
   return (
     <main className="App">
       { user ?
@@ -27,4 +28,4 @@ export default function App()
       }
     </main>
   );
-}
+    }
