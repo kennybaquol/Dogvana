@@ -5,13 +5,15 @@ const app = express();
 const port = process.env.PORT || 3001;
 require('dotenv').config();
 require('./config/database');
+let cors = require("cors");
 
-
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(require('./config/checkToken'));
 app.use('/api/users', require('./routes/api/users'));
+
 // app.use('/api/orders', require('./routes/api/orders'));
 // app.use('/api/items', ensureLoggedIn, require('./routes/api/items'));
 
