@@ -22,8 +22,6 @@ export default function App() {
   //   await showAnimals("Dog", "Bernedoodle");
   // })(), [])
 
-
-
   const animalCategories = ['cat', 'bird', 'dog', 'horse', 'rabbit']
   const shuffleAnimals = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -34,37 +32,38 @@ export default function App() {
     }
   }
 
-  async function showAnimals(animalType, searchBreed) {
-    let page = 1;
-    let apiResult
-    do {
-      apiResult = await client.animal.search({
-        type: animalType,
-        breed: searchBreed,
-        page,
-        limit: 100,
-      });
-      let dogIdx = (page - 1) * 100;
-      apiResult.data.animals.forEach(function (animal) {
-        let firstImageKey = Object.keys(animal.photos[0])[0]
-        console.log(` -- ${++dogIdx}: ${animal.name} id: ${animal.id} url: ${animal.url} photos:${JSON.stringify(animal.photos[0][firstImageKey])}`);
-        // console.log(JSON.stringify(animal))
-      });
+  // async function showAnimals(animalType, searchBreed) {
+  //   let page = 1;
+  //   let apiResult
+  //   do {
+  //     apiResult = await client.animal.search({
+  //       type: animalType,
+  //       breed: searchBreed,
+  //       page,
+  //       limit: 100,
+  //     });
+  //     console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
+  //     let dogIdx = (page - 1) * 100;
+  //     apiResult.data.animals.forEach(function(animal) {
+  //       let firstImageKey = Object.keys(animal.photos[0])[0]
+  //       console.log(` -- ${++dogIdx}: ${animal.name} id: ${animal.id} url: ${animal.url} photos:${JSON.stringify(animal.photos[0][firstImageKey])}`);
+  //       // console.log(JSON.stringify(animal))
+  //     });
+  
+  //     page++;
+  //     console.log('page count ', page)
+  //   } while(apiResult.data.pagination && apiResult.data.pagination.total_pages >= page);
+    
+  //   return apiResult;
+  // } 
 
-      page++;
-    } while (apiResult.data.pagination && apiResult.data.pagination.total_pages >= page);
-
-    return apiResult;
-  }
-
-  useEffect(() => {
-    (async () => {
-      const result = await showAnimals("Dog", "Bernedoodle");
-      console.log(result)
-      setAnimalData(result)
-    })()
-  }, [])
-
+  // useEffect(() => {
+  //   (async () => {
+  //     const result = await showAnimals("Dog", "Bernedoodle");
+  //     setAnimalData(result)
+  //   })()
+  // }, [])
+    
   return (
     <main className="App">
       {user ?

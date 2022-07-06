@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import * as usersService from '../../utilities/users-service';
 import './LoginForm.css'
+import { useState } from 'react';
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
