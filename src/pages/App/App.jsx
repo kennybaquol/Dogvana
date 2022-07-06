@@ -14,8 +14,10 @@ export default function App() {
   const [animalData, setAnimalData] = useState([])
 
   // *TO BE REPLACED WITH .ENV DATA* -KB
-  const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
-  const apiSecret = 'rGvvVKhJ7Ho20y6Mf3Y20rKiMKf4yEN4UBIDx1HF'
+  // const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
+  const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
+  // const apiSecret = 'rGvvVKhJ7Ho20y6Mf3Y20rKiMKf4yEN4UBIDx1HF'
+  const apiSecret = 'YELMxB6N6bVaiMEz0f7GqqccmyF8bu04YiXyvAg8'
   const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
   // *TO BE REPLACED WITH .ENV DATA* -KB
 
