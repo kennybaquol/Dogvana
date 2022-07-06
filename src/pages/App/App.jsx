@@ -41,18 +41,18 @@ export default function App() {
       });
       console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
       let dogIdx = (page - 1) * 100;
-      apiResult.data.animals.forEach(function(animal) {
+      apiResult.data.animals.forEach(function (animal) {
         let firstImageKey = Object.keys(animal.photos[0])[0]
         // console.log(` -- ${++dogIdx}: ${animal.name} id: ${animal.id} url: ${animal.url} photos:${JSON.stringify(animal.photos[0][firstImageKey])}`);
         // console.log(JSON.stringify(animal))
       });
-  
+
       page++;
       console.log('page count ', page)
-    } while(apiResult.data.pagination && apiResult.data.pagination.total_pages >= page);
-    
+    } while (apiResult.data.pagination && apiResult.data.pagination.total_pages >= page);
+
     return apiResult;
-  } 
+  }
 
   useEffect(() => {
     (async () => {
@@ -61,7 +61,7 @@ export default function App() {
       setAnimalData(result.data.animals)
     })()
   }, [])
-    
+
   return (
     <main className="App">
       {user ?
@@ -69,7 +69,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             <Route path="/" element={<Home user={user} animalData={animalData} />} />
-            <Route path="/search" element={<SearchPage />} />
+            <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} />} />
             <Route path="/animalCards/:id" element={<DetailPage />} />
           </Routes>
         </>
