@@ -1,9 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { GoogleLogin } from 'react-google-login';
 import * as usersService from '../../utilities/users-service';
-// import { GoogleLogin } from 'react-google-login'
-import { useGoogleLogin } from 'react-google-login';
-import { GoogleLogin } from '@react-oauth/google';
-
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -12,30 +9,14 @@ export default function LoginForm({ setUser }) {
   });
   const [error, setError] = useState('');
 
-  // Google API -KB
-  // const { signIn, loaded } = useGoogleLogin({
-  //   onSuccess,
-  //   onAutoLoadFinished,
-  //   clientId,
-  //   cookiePolicy,
-  //   loginHint,
-  //   hostedDomain,
-  //   autoLoad,
-  //   isSignedIn,
-  //   fetchBasicProfile,
-  //   redirectUri,
-  //   discoveryDocs,
-  //   onFailure,
-  //   uxMode,
-  //   scope,
-  //   accessType,
-  //   responseType,
-  //   jsSrc,
-  //   onRequest,
-  //   prompt
-  // })
+  // For Google login
+  const [loginData, setLoginData] = useState(
+    localStorage.getItem('loginData')
+      ? JSON.parse(localStorage.getItem('loginData'))
+      : null
+  )
 
-  const clientId = '798631431124-3t89jnlu98aurqa6gjm6vfivs753ukur.apps.googleusercontent.com'
+  const cId = process.env.CLIENT_URL
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
@@ -56,17 +37,32 @@ export default function LoginForm({ setUser }) {
     }
   }
 
-  function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  // For Google login
+  const handleFailure = (result) => {
+    console.log('client id: ' + cId)
+    alert(result)
   }
 
-  const responseGoogle = (response) => {
-    console.log()
-    console.log(response);
+  const handleLogin = async (googleData) => {
+    console.log(googleData)
+    // const res = await fetch('/api/google-login', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     token: googleData.tokenId
+    //   }),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+
+    // const data = await res.json()
+    // setLoginData(data)
+    // localStorage.setItem('loginData', JSON.stringify(data))
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('loginData')
+    setLoginData(null)
   }
 
   return (
@@ -82,28 +78,25 @@ export default function LoginForm({ setUser }) {
       </div>
 
       {/* Google login button */}
-      <GoogleLogin
-        onSuccess={credentialResponse => {
-          console.log(credentialResponse);
-        }}
-        onError={() => {
-          console.log('Login Failed');
-        }}
-      />
-
-      {/* Google login button
-      <GoogleLogin
-        // data-onsuccess={onSignIn}
-        clientId={clientId}
-        buttonText="Sign in with Google"
-        // onSuccess={onSignIn}
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={'single_host_origin'}
-        isSignedIn={true}
-      /> */}
-      {/* , */}
-      {/* document.getElementById('googleButton') */}
+      <div>
+        {
+          loginData ? (
+            <div>
+              <h3>You logged in as {loginData.email}</h3>
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          )
+            : (
+              <GoogleLogin
+                clientId={cId}
+                buttonText="Log in with Google"
+                onSuccess={handleLogin}
+                onFailure={handleFailure}
+                cookiePolicy={'single_host_origin'}
+              ></GoogleLogin>
+            )
+        }
+      </div>
 
       <p className="error-message">&nbsp;{error}</p>
     </div>
