@@ -1,7 +1,7 @@
 .login-form-container{
     display: flex;
     flex-direction: column;
-    padding: 50px 100px;
+    padding: 50px 90px;
     background-color: white;
     margin: 20px;
     border-radius: 20px;
@@ -10,6 +10,5 @@
 .login-form{
     display: flex;
     flex-direction: column;
-    /* width: 13em; */
     align-self: center;
 }
