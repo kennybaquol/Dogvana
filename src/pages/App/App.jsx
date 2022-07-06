@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react'
 import AuthPage from '../AuthPage/AuthPage'
 import SearchPage from '../SearchPage/SearchPage'
 import Home from '../Home/Home'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useParams } from 'react-router-dom'
 import NavBar from '../../components/NavBar/NavBar';
 import { getUser } from '../../utilities/users-service'
+import DetailPage from './Detail Page/DetailPage';
+import React from 'react';
 const petfinder = require("@petfinder/petfinder-js");
 const animalCategories = ['cat', 'bird', 'dog', 'horse', 'rabbit']
 const shuffleAnimals = (array) => {
@@ -17,6 +19,7 @@ const shuffleAnimals = (array) => {
   }
 }
 
+
 export default function App(){
 
   const [user, setUser] = useState(getUser())
@@ -24,6 +27,7 @@ export default function App(){
   const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
   const apiSecret = 'rGvvVKhJ7Ho20y6Mf3Y20rKiMKf4yEN4UBIDx1HF'
   const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
+  let { animalId } = useParams()
 
   async function showAnimals(animalType, searchBreed) {
     let page = 1;
@@ -65,6 +69,7 @@ export default function App(){
           <Routes>
             <Route path="/" element={<Home user={user} animalData={animalData}/>} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/:animalId" element={<DetailPage/>}/>
           </Routes>
         </>
         :
