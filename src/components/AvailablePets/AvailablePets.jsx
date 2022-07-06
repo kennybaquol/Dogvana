@@ -1,5 +1,5 @@
 import './AvailablePets.css'
-import showAnimals from '../../../api'
+// import showAnimals from '../../../api'
 
 
 export default function AvailablePets() {
