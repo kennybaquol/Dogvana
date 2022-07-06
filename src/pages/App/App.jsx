@@ -6,56 +6,61 @@ import Home from '../Home/Home'
 import { Routes, Route } from 'react-router-dom'
 import NavBar from '../../components/NavBar/NavBar';
 import { getUser } from '../../utilities/users-service'
+import DetailPage from './Detail Page/DetailPage';
 const petfinder = require("@petfinder/petfinder-js");
-const animalCategories = ['cat', 'bird', 'dog', 'horse', 'rabbit']
-const shuffleAnimals = (array) => {
-  for (let i = array.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1))
-    const temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
-  }
-}
 
-export default function App(){
-
+export default function App() {
   const [user, setUser] = useState(getUser())
   const [animalData, setAnimalData] = useState([])
+
+  // *TO BE REPLACED WITH .ENV DATA* -KB
   const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
   const apiSecret = 'rGvvVKhJ7Ho20y6Mf3Y20rKiMKf4yEN4UBIDx1HF'
   const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
+  // *TO BE REPLACED WITH .ENV DATA* -KB
 
-  // async function showAnimals(animalType, searchBreed) {
-  //   let page = 1;
-  //   let apiResult
-  //   do {
-  //     apiResult = await client.animal.search({
-  //       type: animalType,
-  //       breed: searchBreed,
-  //       page,
-  //       limit: 100,
-  //     });
-  //     console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
-  //     let dogIdx = (page - 1) * 100;
-  //     apiResult.data.animals.forEach(function(animal) {
-  //       let firstImageKey = Object.keys(animal.photos[0])[0]
-  //       console.log(` -- ${++dogIdx}: ${animal.name} id: ${animal.id} url: ${animal.url} photos:${JSON.stringify(animal.photos[0][firstImageKey])}`);
-  //       // console.log(JSON.stringify(animal))
-  //     });
+  const animalCategories = ['cat', 'bird', 'dog', 'horse', 'rabbit']
+  const shuffleAnimals = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      const temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
+    }
+  }
+
+  async function showAnimals(animalType, searchBreed) {
+    let page = 1;
+    let apiResult
+    do {
+      apiResult = await client.animal.search({
+        type: animalType,
+        breed: searchBreed,
+        page,
+        limit: 100,
+      });
+      console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
+      let dogIdx = (page - 1) * 100;
+      apiResult.data.animals.forEach(function(animal) {
+        let firstImageKey = Object.keys(animal.photos[0])[0]
+        // console.log(` -- ${++dogIdx}: ${animal.name} id: ${animal.id} url: ${animal.url} photos:${JSON.stringify(animal.photos[0][firstImageKey])}`);
+        // console.log(JSON.stringify(animal))
+      });
   
-  //     page++;
-  //     console.log('page count ', page)
-  //   } while(apiResult.data.pagination && apiResult.data.pagination.total_pages >= page);
+      page++;
+      console.log('page count ', page)
+    } while(apiResult.data.pagination && apiResult.data.pagination.total_pages >= page);
     
-  //   return apiResult;
-  // } 
+    return apiResult;
+  } 
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const result = await showAnimals("Dog", "Bernedoodle");
-  //     setAnimalData(result)
-  //   })()
-  // }, [])
+  useEffect(() => {
+    (async () => {
+      const result = await showAnimals("Dog", "Bernedoodle");
+      console.log(result.data.animals)
+      setAnimalData(result.data.animals)
+    })()
+  }, [])
     
   return (
     <main className="App">
@@ -63,8 +68,9 @@ export default function App(){
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/" element={<Home user={user} animalData={animalData}/>} />
+            <Route path="/" element={<Home user={user} animalData={animalData} />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/animalCards/:id" element={<DetailPage />} />
           </Routes>
         </>
         :
