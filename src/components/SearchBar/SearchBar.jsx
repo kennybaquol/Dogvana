@@ -8,33 +8,6 @@ export default function SearchBar() {
     // State for animals to be listed on the home page -KB
     const [currentAnimals, setCurrentAnimals] = useState([])
 
-    // useEffect for fetching -KB
-    useEffect(function () {
-        async function getAnimals() {
-            // *REPLACE THE BELOW LINE WITH API FETCH* -KB
-            const animals = ['cat', 'dawg', 'butta dog']
-
-            // fetch(url, {
-            //     method: "GET",
-            //     mode: "no-cors",
-            //     headers: {
-            //         Accept: "application/json",
-            //         Authorization: `Bearer ${token}`
-            //     }
-            // })
-            //     .then(res => res.json())
-            //     .then((data) => {
-            //         console.log(data)
-            //     })
-            //     .catch((error) => {
-            //         console.log(error)
-            //     })
-
-            setCurrentAnimals(animals)
-        }
-        getAnimals();
-    }, []);
-
 
     function handleChange(event) {
         setNewSearch({ ...newSearch, [event.target.name]: event.target.value })
