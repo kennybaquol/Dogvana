@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
 
-header {
+.logo-header {
     display: flex;
     height: 80px;
     align-items: center;
@@ -14,7 +14,7 @@ header {
     padding-left: 200px;
 }
 
-header span{
+.logo{
     font-family: 'Lily Script One', cursive;
 }
 

@@ -17,9 +17,20 @@ const shuffleAnimals = (array) => {
   }
 }
 
+  // useEffect((async function () {
+  //   await showAnimals("Dog", "Bernedoodle");
+  // })(), [])
+  // useEffect(() => {
+  //   (async () => {
+  //     const result = await showAnimals("Dog", "Bernedoodle");
+  //     setAnimalData(result)
+  //   })()
+  // })
+
+export default function App(){
 
   const [user, setUser] = useState(getUser())
-  const [animalData, setAnimalData] = useState([]) 
+  const [animalData, setAnimalData] = useState([])
   const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
   const apiSecret = 'rGvvVKhJ7Ho20y6Mf3Y20rKiMKf4yEN4UBIDx1HF'
   const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
@@ -45,19 +56,7 @@ const shuffleAnimals = (array) => {
     } while(apiResult.data.pagination && apiResult.data.pagination.total_pages >= page);
     
     return apiResult;
-  }
-
-  // useEffect((async function () {
-  //   await showAnimals("Dog", "Bernedoodle");
-  // })(), [])
-  // useEffect(() => {
-  //   (async () => {
-  //     const result = await showAnimals("Dog", "Bernedoodle");
-  //     setAnimalData(result)
-  //   })()
-  // })
-
-export default function App(){
+  } 
     
   return (
     <main className="App">
