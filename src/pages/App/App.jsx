@@ -18,13 +18,13 @@ const shuffleAnimals = (array) => {
 }
 
 
-  const [user, setUser] = useState(getUser())
-  const [animalData, setAnimalData] = useState([]) 
+  
   const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
   const apiSecret = 'rGvvVKhJ7Ho20y6Mf3Y20rKiMKf4yEN4UBIDx1HF'
   const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
 
-  async function showAnimals(animalType, searchBreed) {
+  async function ShowAnimals(animalType, searchBreed) {
+    
     let page = 1;
     let apiResult
     do {
@@ -58,7 +58,8 @@ const shuffleAnimals = (array) => {
   // })
 
 export default function App(){
-    
+  const [user, setUser] = useState(getUser())
+  const [animalData, setAnimalData] = useState([]) 
   return (
     <main className="App">
       {user ?
