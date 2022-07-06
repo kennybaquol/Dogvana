@@ -43,7 +43,7 @@ export default function App() {
       let dogIdx = (page - 1) * 100;
       apiResult.data.animals.forEach(function(animal) {
         let firstImageKey = Object.keys(animal.photos[0])[0]
-        console.log(` -- ${++dogIdx}: ${animal.name} id: ${animal.id} url: ${animal.url} photos:${JSON.stringify(animal.photos[0][firstImageKey])}`);
+        // console.log(` -- ${++dogIdx}: ${animal.name} id: ${animal.id} url: ${animal.url} photos:${JSON.stringify(animal.photos[0][firstImageKey])}`);
         // console.log(JSON.stringify(animal))
       });
   
@@ -54,13 +54,13 @@ export default function App() {
     return apiResult;
   } 
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const result = await showAnimals("Dog", "Bernedoodle");
-  //     console.log(result)
-  //     setAnimalData(result)
-  //   })()
-  // }, [])
+  useEffect(() => {
+    (async () => {
+      const result = await showAnimals("Dog", "Bernedoodle");
+      console.log(result.data.animals)
+      setAnimalData(result.data.animals)
+    })()
+  }, [])
     
   return (
     <main className="App">
