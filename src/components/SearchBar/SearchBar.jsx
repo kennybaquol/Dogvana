@@ -5,12 +5,6 @@ import './SearchBar.css'
 export default function SearchBar() {
 
     const [newSearch, setNewSearch] = useState('')
-<<<<<<< HEAD
-    // State for animals to be listed on the home page -KB
-    const [currentAnimals, setCurrentAnimals] = useState([])
-
-=======
->>>>>>> main
 
     function handleChange(event) {
         setNewSearch({ ...newSearch, [event.target.name]: event.target.value })
