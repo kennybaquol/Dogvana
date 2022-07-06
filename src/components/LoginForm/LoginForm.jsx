@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import * as usersService from '../../utilities/users-service';
+import './LoginForm.css'
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -67,8 +68,9 @@ export default function LoginForm({ setUser }) {
 
   return (
     <div>
-      <div className="form-container" onSubmit={handleSubmit}>
-        <form autoComplete="off" >
+      <div className="login-form-container" onSubmit={handleSubmit}>
+        <h1>Log In</h1>
+        <form className="login-form"autoComplete="off" >
           <label>Email</label>
           <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
           <label>Password</label>
