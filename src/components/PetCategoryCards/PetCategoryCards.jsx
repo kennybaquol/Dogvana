@@ -10,16 +10,16 @@ export default function PetCategoryCards() {
       </header>
       <div className="pet-category-cards">
         <span>
-          <Link to="/animalCards/dog">Dog</Link>
+          <Link to="/search/dog">Dog</Link>
         </span>
         <span>
-          <Link to="/animalCards/cat">Cat</Link>
+          <Link to="/search/cat">Cat</Link>
         </span>
         <span>
-          <Link to="/animalCards/other">Other Animals</Link>
+          <Link to="/search/other">Other Animals</Link>
         </span>
         <span>
-          <Link to="/animalCards/shelters">Shelters and Rescues</Link>
+          <Link to="/search/shelters">Shelters and Rescues</Link>
         </span>
       </div>
     </>

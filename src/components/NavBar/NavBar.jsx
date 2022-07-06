@@ -13,7 +13,7 @@ export default function NavBar({ user, setUser }) {
     <nav className="logo-header">
       <Link to="/" className="logo">Dogvana</Link>
       &nbsp; | &nbsp;
-      <Link to="/orders/new">Favorites</Link>
+      <Link to="/favorites">Favorites</Link>
       &nbsp; | &nbsp;
       Hello, {user.name}
       &nbsp; | &nbsp;
