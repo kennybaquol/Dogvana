@@ -22,12 +22,7 @@ export default function App() {
   //   await showAnimals("Dog", "Bernedoodle");
   // })(), [])
 
-  useEffect(() => {
-    (async () => {
-      const result = await showAnimals("Dog", "Bernedoodle");
-      setAnimalData(result)
-    })()
-  }, [])
+
 
   const animalCategories = ['cat', 'bird', 'dog', 'horse', 'rabbit']
   const shuffleAnimals = (array) => {
@@ -62,7 +57,13 @@ export default function App() {
     return apiResult;
   }
 
-
+  useEffect(() => {
+    (async () => {
+      const result = await showAnimals("Dog", "Bernedoodle");
+      console.log(result)
+      setAnimalData(result)
+    })()
+  }, [])
 
   return (
     <main className="App">
