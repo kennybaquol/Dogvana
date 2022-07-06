@@ -5,12 +5,6 @@ import './SearchBar.css'
 export default function SearchBar() {
 
     const [newSearch, setNewSearch] = useState('')
-<<<<<<< HEAD
-    // State for animals to be listed on the home page -KB
-    const [currentAnimals, setCurrentAnimals] = useState([])
-
-=======
->>>>>>> main
 
     function handleChange(event) {
         setNewSearch({ ...newSearch, [event.target.name]: event.target.value })
@@ -21,9 +15,25 @@ export default function SearchBar() {
             <form>
                 <input type="text" name="animal" placeholder="Search Terrier, Kitten, etc." onChange={handleChange} />
                 <input type="text" name="zip" placeholder="Enter your zip/address" onChange={handleChange} />
-                <Link className="magnifying-glass" to={"search/" + newSearch.animal + "+" + newSearch.zip}>
-                    <button type="submit">🔍</button>
-                </Link>
+                {newSearch.animal ?
+                    newSearch.zip ?
+                        <Link className="magnifying-glass" to={"search/" + newSearch.animal + "+" + newSearch.zip}>
+                            <button type="submit">🔍</button>
+                        </Link>
+                        :
+                        <Link className="magnifying-glass" to={"search/" + newSearch.animal}>
+                            <button type="submit">🔍</button>
+                        </Link>
+                    :
+                    newSearch.zip ?
+                        <Link className="magnifying-glass" to={"search/" + newSearch.zip}>
+                            <button type="submit">🔍</button>
+                        </Link>
+                        :
+                        <Link className="magnifying-glass" to={"search/"}>
+                            <button type="submit">🔍</button>
+                        </Link>
+                }
                 <br />
             </form>
         </div>
