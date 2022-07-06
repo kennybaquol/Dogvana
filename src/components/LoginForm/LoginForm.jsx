@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { GoogleLogin } from 'react-google-login';
 import * as usersService from '../../utilities/users-service';
 import './LoginForm.css'
 
@@ -8,6 +9,15 @@ export default function LoginForm({ setUser }) {
     password: ''
   });
   const [error, setError] = useState('');
+
+  // For Google login
+  const [loginData, setLoginData] = useState(
+    localStorage.getItem('loginData')
+      ? JSON.parse(localStorage.getItem('loginData'))
+      : null
+  )
+
+  const cId = process.env.CLIENT_URL
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
@@ -28,6 +38,34 @@ export default function LoginForm({ setUser }) {
     }
   }
 
+  // For Google login
+  const handleFailure = (result) => {
+    console.log('client id: ' + cId)
+    alert(result)
+  }
+
+  const handleLogin = async (googleData) => {
+    console.log(googleData)
+    // const res = await fetch('/api/google-login', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     token: googleData.tokenId
+    //   }),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+
+    // const data = await res.json()
+    // setLoginData(data)
+    // localStorage.setItem('loginData', JSON.stringify(data))
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('loginData')
+    setLoginData(null)
+  }
+
   return (
     <div>
       <div className="login-form-container" onSubmit={handleSubmit}>
@@ -40,6 +78,28 @@ export default function LoginForm({ setUser }) {
           <button type="submit">LOG IN</button>
         </form>
       </div>
+
+      {/* Google login button */}
+      <div>
+        {
+          loginData ? (
+            <div>
+              <h3>You logged in as {loginData.email}</h3>
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          )
+            : (
+              <GoogleLogin
+                clientId={cId}
+                buttonText="Log in with Google"
+                onSuccess={handleLogin}
+                onFailure={handleFailure}
+                cookiePolicy={'single_host_origin'}
+              ></GoogleLogin>
+            )
+        }
+      </div>
+
       <p className="error-message">&nbsp;{error}</p>
     </div>
   );
