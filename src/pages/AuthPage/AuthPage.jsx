@@ -7,7 +7,7 @@ export default function AuthPage({ setUser }) {
         <>
             <div className="top-header"></div>
             <header className="logo-header">
-                <span className="logo">Dogvana</span>
+                <a href="/" className="logo">Dogvana</a>
             </header>
             <main className="auth-page">
                 <SignupForm setUser={setUser} />

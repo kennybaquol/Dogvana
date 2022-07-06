@@ -16,6 +16,11 @@
 
 .logo{
     font-family: 'Lily Script One', cursive;
+    text-decoration: none;
+}
+
+.logo:hover{
+    cursor: pointer;
 }
 
 .auth-page{

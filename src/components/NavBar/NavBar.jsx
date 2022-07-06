@@ -10,8 +10,8 @@ export default function NavBar({ user, setUser }) {
   }
 
   return (
-    <nav>
-      <Link to="/">Dogvana</Link>
+    <nav className="logo-header">
+      <Link to="/" className="logo">Dogvana</Link>
       &nbsp; | &nbsp;
       <Link to="/orders/new">Favorites</Link>
       &nbsp; | &nbsp;

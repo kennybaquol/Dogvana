@@ -17,16 +17,6 @@ const shuffleAnimals = (array) => {
   }
 }
 
-  // useEffect((async function () {
-  //   await showAnimals("Dog", "Bernedoodle");
-  // })(), [])
-  // useEffect(() => {
-  //   (async () => {
-  //     const result = await showAnimals("Dog", "Bernedoodle");
-  //     setAnimalData(result)
-  //   })()
-  // })
-
 export default function App(){
 
   const [user, setUser] = useState(getUser())
@@ -45,6 +35,7 @@ export default function App(){
         page,
         limit: 100,
       });
+      console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
       let dogIdx = (page - 1) * 100;
       apiResult.data.animals.forEach(function(animal) {
         let firstImageKey = Object.keys(animal.photos[0])[0]
@@ -53,10 +44,18 @@ export default function App(){
       });
   
       page++;
+      console.log('page count ', page)
     } while(apiResult.data.pagination && apiResult.data.pagination.total_pages >= page);
     
     return apiResult;
   } 
+
+  useEffect(() => {
+    (async () => {
+      const result = await showAnimals("Dog", "Bernedoodle");
+      setAnimalData(result)
+    })()
+  }, [])
     
   return (
     <main className="App">
