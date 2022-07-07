@@ -5,9 +5,6 @@
     height: 80px;
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
-    -webkit-box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
-    -moz-box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
     font-size: 40px;
     color: #6504b5;
     position: relative;  

@@ -2,6 +2,7 @@ import * as usersService from '../../utilities/users-service'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import PetCategoryCards from '../../components/PetCategoryCards/PetCategoryCards'
 import AvailablePets from '../../components/AvailablePets/AvailablePets'
+import './Home.css'
 
 export default function Home({ showAnimals }) {
     async function handleCheckToken() {
@@ -11,7 +12,6 @@ export default function Home({ showAnimals }) {
 
     return (
         <>
-            <h1>Home</h1>
             <SearchBar />
             <PetCategoryCards />
             <AvailablePets showAnimals={showAnimals} />
