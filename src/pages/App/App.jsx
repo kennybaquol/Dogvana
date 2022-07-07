@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import AuthPage from '../AuthPage/AuthPage'
 import SearchPage from '../SearchPage/SearchPage'
 import Home from '../Home/Home'
@@ -15,7 +15,6 @@ const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
 
 export default function App() {
   const [user, setUser] = useState(getUser())
-  // const [animalData, setAnimalData] = useState([])
 
   let { id } = useParams()
 
@@ -54,31 +53,15 @@ export default function App() {
     return apiResult;
   }
 
-<<<<<<< HEAD
-  // Moving to AvailablePets -KB
-  // useEffect(() => {
-  //   (async () => {
-  //     const result = await showAnimals("Dog", "Bernedoodle");
-  //     // console.log(result.data.animals)
-  //     setAnimalData(result.data.animals)
-  //   })()
-  // }, [])
-
-=======
->>>>>>> main
   return (
     <main className="App">
       {user ?
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-<<<<<<< HEAD
             <Route path="/" element={<Home user={user} showAnimals={showAnimals} />} />
-=======
-            <Route path="/" element={<Home user={user} animalData={animalData} showAnimals={showAnimals} setAnimalData={setAnimalData} />} />
->>>>>>> main
             <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} />} />
-            <Route path="/animalCards/:id" element={<DetailPage animalData={animalData} setAnimalData={setAnimalData} user={user} />} />
+            <Route path="/animalCards/:id" element={<DetailPage user={user} />} />
           </Routes>
         </>
         :
