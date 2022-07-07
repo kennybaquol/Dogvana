@@ -14,7 +14,7 @@ const petfinder = require("@petfinder/petfinder-js");
 
 export default function App() {
   const [user, setUser] = useState(getUser())
-  const [animalData, setAnimalData] = useState([])
+  // const [animalData, setAnimalData] = useState([])
 
   // *TO BE REPLACED WITH .ENV DATA* -KB
   // const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
@@ -61,13 +61,14 @@ export default function App() {
     return apiResult;
   }
 
-  useEffect(() => {
-    (async () => {
-      const result = await showAnimals("Dog", "Bernedoodle");
-      // console.log(result.data.animals)
-      setAnimalData(result.data.animals)
-    })()
-  }, [])
+  // Moving to AvailablePets -KB
+  // useEffect(() => {
+  //   (async () => {
+  //     const result = await showAnimals("Dog", "Bernedoodle");
+  //     // console.log(result.data.animals)
+  //     setAnimalData(result.data.animals)
+  //   })()
+  // }, [])
 
   return (
     <main className="App">
@@ -75,8 +76,8 @@ export default function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/" element={<Home user={user} animalData={animalData} />} />
-            <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} animalData={animalData} />} />
+            <Route path="/" element={<Home user={user} showAnimals={showAnimals} />} />
+            <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} />} />
             <Route path="/animalCards/:id" element={<DetailPage />} />
           </Routes>
         </>

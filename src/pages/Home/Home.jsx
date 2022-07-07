@@ -5,7 +5,7 @@ import AvailablePets from '../../components/AvailablePets/AvailablePets'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-export default function Home({ animalData }) {
+export default function Home({ showAnimals }) {
     async function handleCheckToken() {
         const expDate = await usersService.checkToken()
         console.log(expDate)
@@ -16,7 +16,7 @@ export default function Home({ animalData }) {
             <h1>Home</h1>
             <SearchBar />
             <PetCategoryCards />
-            <AvailablePets animalData={animalData} />
+            <AvailablePets showAnimals={showAnimals} />
         </>
     )
 }

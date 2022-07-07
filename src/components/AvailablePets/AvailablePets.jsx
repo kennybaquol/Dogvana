@@ -1,6 +1,16 @@
+import { useState, useEffect } from 'react';
 import './AvailablePets.css'
 
-export default function AvailablePets({ animalData }) {
+export default function AvailablePets({ showAnimals }) {
+  const [animalData, setAnimalData] = useState([])
+  
+  useEffect(() => {
+    (async () => {
+      const result = await showAnimals("Dog", "Bernedoodle");
+      // console.log(result.data.animals)
+      setAnimalData(result.data.animals)
+    })()
+  }, [])
 
   return (
     <>
