@@ -9,18 +9,28 @@ export default function PetCategoryCards() {
         <span>Browse pets from over 11,500 shelters and rescues.</span>
       </header>
       <div className="pet-category-cards">
-        <span>
-          <Link to="/search/dog">Dog</Link>
-        </span>
-        <span>
-          <Link to="/search/cat">Cat</Link>
-        </span>
-        <span>
-          <Link to="/search/other">Other Animals</Link>
-        </span>
-        <span>
-          <Link to="/search/shelters">Shelters and Rescues</Link>
-        </span>
+
+        <Link to="/search/dog">
+          <span>
+            Dog
+          </span>
+        </Link>
+        <Link to="/search/cat">
+          <span>
+            Cat
+          </span>
+        </Link>
+        <Link to="/search/other">
+          <span>
+            Other Animals
+          </span>
+        </Link>
+        <Link to="/search/shelters">
+          <span>
+            Shelters and Rescues
+          </span>
+        </Link>
+
       </div>
     </>
   )

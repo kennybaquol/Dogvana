@@ -33,7 +33,7 @@ export default function App() {
       const temp = array[i]
       array[i] = array[j]
       array[j] = temp
-    }
+    } 
   }
 
   async function showAnimals(animalType, searchBreed) {
