@@ -9,22 +9,15 @@ import { getUser } from '../../utilities/users-service'
 import DetailPage from './Detail Page/DetailPage';
 import React from 'react';
 const petfinder = require("@petfinder/petfinder-js");
-
-
+const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
+const apiSecret = 'YELMxB6N6bVaiMEz0f7GqqccmyF8bu04YiXyvAg8'
+const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
 
 export default function App() {
   const [user, setUser] = useState(getUser())
   const [animalData, setAnimalData] = useState([])
 
-  // *TO BE REPLACED WITH .ENV DATA* -KB
-  // const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
-  const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
-  // const apiSecret = 'rGvvVKhJ7Ho20y6Mf3Y20rKiMKf4yEN4UBIDx1HF'
-  const apiSecret = 'YELMxB6N6bVaiMEz0f7GqqccmyF8bu04YiXyvAg8'
-  // *TO BE REPLACED WITH .ENV DATA* -KB
-
-  const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
-  let { animalId } = useParams()
+  let { id } = useParams()
 
   const animalCategories = ['cat', 'bird', 'dog', 'horse', 'rabbit']
   const shuffleAnimals = (array) => {
@@ -61,23 +54,15 @@ export default function App() {
     return apiResult;
   }
 
-  useEffect(() => {
-    (async () => {
-      const result = await showAnimals("Dog", "Bernedoodle");
-      console.log(result.data.animals)
-      setAnimalData(result.data.animals)
-    })()
-  }, [])
-
   return (
     <main className="App">
       {user ?
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/" element={<Home user={user} animalData={animalData} />} />
+            <Route path="/" element={<Home user={user} animalData={animalData} showAnimals={showAnimals} setAnimalData={setAnimalData} />} />
             <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} />} />
-            <Route path="/animalCards/:id" element={<DetailPage />} />
+            <Route path="/animalCards/:id" element={<DetailPage animalData={animalData} setAnimalData={setAnimalData} user={user} />} />
           </Routes>
         </>
         :
