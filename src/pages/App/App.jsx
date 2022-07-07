@@ -3,21 +3,28 @@ import { useEffect, useState } from 'react'
 import AuthPage from '../AuthPage/AuthPage'
 import SearchPage from '../SearchPage/SearchPage'
 import Home from '../Home/Home'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useParams } from 'react-router-dom'
 import NavBar from '../../components/NavBar/NavBar';
 import { getUser } from '../../utilities/users-service'
 import DetailPage from './Detail Page/DetailPage';
+import React from 'react';
 const petfinder = require("@petfinder/petfinder-js");
+
+
 
 export default function App() {
   const [user, setUser] = useState(getUser())
   const [animalData, setAnimalData] = useState([])
 
   // *TO BE REPLACED WITH .ENV DATA* -KB
-  const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
-  const apiSecret = 'rGvvVKhJ7Ho20y6Mf3Y20rKiMKf4yEN4UBIDx1HF'
-  const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
+  // const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
+  const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
+  // const apiSecret = 'rGvvVKhJ7Ho20y6Mf3Y20rKiMKf4yEN4UBIDx1HF'
+  const apiSecret = 'YELMxB6N6bVaiMEz0f7GqqccmyF8bu04YiXyvAg8'
   // *TO BE REPLACED WITH .ENV DATA* -KB
+
+  const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
+  let { animalId } = useParams()
 
   const animalCategories = ['cat', 'bird', 'dog', 'horse', 'rabbit']
   const shuffleAnimals = (array) => {

@@ -1,0 +1,29 @@
+.button-container{
+    display: flex;
+    padding-left: 100px;
+}
+
+.animal-detail {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding:0px 40px;
+    align-items: flex-start;
+    box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+    -webkit-box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+    -moz-box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+    background-color: white;
+    margin: 50px;
+    border-radius: 10px;
+}
+
+.animal-detail *{
+    padding: 25px 0px;
+    text-align: left;
+    border-bottom: 1px solid rgb(77 71 81 / 20%);
+    width: 100%;
+}
+
+.detail-page {
+    background-color:#efeef1;
+}

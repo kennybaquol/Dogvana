@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Link } from 'react-router-dom'
 import './SearchBar.css'
 
@@ -15,9 +15,25 @@ export default function SearchBar() {
             <form>
                 <input type="text" name="animal" placeholder="Search Terrier, Kitten, etc." onChange={handleChange} />
                 <input type="text" name="zip" placeholder="Enter your zip/address" onChange={handleChange} />
-                <Link className="magnifying-glass" to={"search/" + newSearch.animal + "+" + newSearch.zip}>
-                    <button type="submit">🔍</button>
-                </Link>
+                {newSearch.animal ?
+                    newSearch.zip ?
+                        <Link className="magnifying-glass" to={"search/" + newSearch.animal + "+" + newSearch.zip}>
+                            <button type="submit">🔍</button>
+                        </Link>
+                        :
+                        <Link className="magnifying-glass" to={"search/" + newSearch.animal}>
+                            <button type="submit">🔍</button>
+                        </Link>
+                    :
+                    newSearch.zip ?
+                        <Link className="magnifying-glass" to={"search/" + newSearch.zip}>
+                            <button type="submit">🔍</button>
+                        </Link>
+                        :
+                        <Link className="magnifying-glass" to={"search/"}>
+                            <button type="submit">🔍</button>
+                        </Link>
+                }
                 <br />
             </form>
         </div>

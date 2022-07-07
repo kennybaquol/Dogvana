@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import './AvailablePets.css'
 // import showAnimals from '../../../api'
+import { Link } from 'react-router-dom'
 
 
 export default function AvailablePets({ animalData }) {
@@ -14,15 +15,31 @@ export default function AvailablePets({ animalData }) {
     <>
       <h1>Pets Available for Adoption</h1>
       <div className="available-pets">
-        {true ?
-          <span>TRUE</span>
-          :
-          <span>NOT TRUE</span>
-        }
 
-        <span>Pet2</span>
-        <span>Pet3</span>
-        <span>Pet4</span>
+        <Link to="/">
+          <span>
+            Pet1
+          </span>
+        </Link>
+
+        <Link to="/">
+          <span>
+            Pet2
+          </span>
+        </Link>
+
+        <Link to="/">
+          <span>
+            Pet3
+          </span>
+        </Link>
+
+        <Link to="/">
+          <span>
+            Pet4
+          </span>
+        </Link>
+
       </div>
     </>
   )
