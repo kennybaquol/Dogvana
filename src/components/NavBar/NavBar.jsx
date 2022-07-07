@@ -12,12 +12,9 @@ export default function NavBar({ user, setUser }) {
   return (
     <nav className="logo-header">
       <Link to="/" className="logo">Dogvana</Link>
-      &nbsp; | &nbsp;
-      <Link to="/favorites">Favorites</Link>
-      &nbsp; | &nbsp;
-      Hello, {user.name}
-      &nbsp; | &nbsp;
-      <Link to="" onClick={handleLogOut}>Log Out</Link>
+      <Link to="/favorites" className="not-logo">Favorites</Link>
+      <header className="not-logo">Hello, {user.name}</header>
+      <Link to="" className="not-logo"onClick={handleLogOut}>Log Out</Link>
     </nav>
   )
 }

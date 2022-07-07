@@ -14,10 +14,6 @@
     padding-left: 200px;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 .logo a{
     font-family: 'Lily Script One', cursive;
     text-decoration: none;
@@ -31,4 +27,16 @@
 
 .navbar-container{
     padding-left: 350px;
+}
+
+.logo-header * {
+    margin: 0px 30px;
+}
+
+.logo {
+    margin-right: 750px;
+}
+
+.not-logo{
+    font-size: 20px;
 }
