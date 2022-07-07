@@ -14,9 +14,6 @@ export default function SearchPage({ showAnimals }) {
     const [type, setType] = useState('')
     const [animalData, setAnimalData] = useState([])
 
-    // Left temporarily empty for testing -KB
-    const animals = []
-
     function handleChange(event) {
 
     }
@@ -40,6 +37,8 @@ export default function SearchPage({ showAnimals }) {
             // }
             // setAnimalData([])
             const result = await showAnimals(type, "poodle");
+            // Left temporarily empty for testing -KB
+            const animals = []
             // Push 10 results to the animals array to be passed down to PetCard
             for (let i = 0; i < 10; i++) {
                 animals.push(result.data.animals[i])
@@ -49,7 +48,7 @@ export default function SearchPage({ showAnimals }) {
             console.log(animals)
             // console.log('Use effect[] result data: ')
             // console.log(result.data.animals)
-            setAnimalData(result.data.animals)
+            await setAnimalData(animals)
             console.log('animal data from SearchPage 1st render:')
             console.log(animalData)
         })()
@@ -68,15 +67,15 @@ export default function SearchPage({ showAnimals }) {
         <>
             <Filter filter={filter} />
             {animalData.length > 0 ?
-                <>
-                    <div className="available-pets">
-                        {animalData.map((t, idx) => (
-                            <PetCard animal={t} key={idx} />
-                        ))}
-                        {/* <PetCard animalData={animalData} /> */}
-                    </div>
-                    <br />
-                </>
+                // <>
+                //     <div className="available-pets">
+                //         {animalData.map((t, idx) => (
+                //             <PetCard animal={t} key={idx} />
+                //         ))}
+                //     </div>
+                //     <br />
+                // </>
+                <PetCard animalData={animalData} />
                 :
                 <h3>Loading...</h3>
             }
