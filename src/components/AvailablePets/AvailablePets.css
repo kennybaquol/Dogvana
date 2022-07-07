@@ -1,6 +1,16 @@
 .available-pets{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+}
+
+.available-pet-card{
+    display: flex;
+}
+
+.available-pet-card-image{
+    width: 10em;
+    height: auto;
 }
 
 
