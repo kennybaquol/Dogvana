@@ -49,7 +49,7 @@ export default function App() {
       // console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
       let dogIdx = (page - 1) * 100;
       apiResult.data.animals.forEach(function (animal) {
-        let firstImageKey = Object.keys(animal.photos[0])[0]
+        // let firstImageKey = Object.keys(animal.photos[0])[0]
         // console.log(` -- ${++dogIdx}: ${animal.name} id: ${animal.id} url: ${animal.url} photos:${JSON.stringify(animal.photos[0][firstImageKey])}`);
         // console.log(JSON.stringify(animal))
       });
