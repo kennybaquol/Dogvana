@@ -32,7 +32,7 @@ export default function AvailablePets({ showAnimals }) {
         </Link>
       </div>
       :
-      <h1>hi</h1>
+      <h1 className="loading">Loading...</h1>
       }
     </>
   )
