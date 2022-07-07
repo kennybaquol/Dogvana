@@ -35,3 +35,9 @@
     height: 30px;
     background-color: #efeef1;
 }
+
+html, body{
+    height:100vh;
+    width: 100vw;
+    background-color: #efeef1;
+}

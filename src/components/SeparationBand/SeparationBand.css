@@ -1,0 +1,9 @@
+.separation-band{
+    background-color: #6504b5;
+    height: 50px;
+    display: block;
+    width: 100vw;
+    box-shadow: 1px 1px 3px rgb(77 71 81 / 60%);
+    -webkit-box-shadow: 1px 1px 3px rgb(77 71 81 / 60%);
+    -moz-box-shadow: 1px 1px 3px rgb(77 71 81 / 60%);
+}

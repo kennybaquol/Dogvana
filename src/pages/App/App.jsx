@@ -8,6 +8,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import { getUser } from '../../utilities/users-service'
 import DetailPage from './Detail Page/DetailPage';
 import React from 'react';
+import SeparationBand from '../../components/SeparationBand/SeparationBand';
 const petfinder = require("@petfinder/petfinder-js");
 const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
 const apiSecret = 'YELMxB6N6bVaiMEz0f7GqqccmyF8bu04YiXyvAg8'
@@ -58,6 +59,7 @@ export default function App() {
       {user ?
         <>
           <NavBar user={user} setUser={setUser} />
+          <SeparationBand />
           <Routes>
             <Route path="/" element={<Home user={user} showAnimals={showAnimals} />} />
             <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} />} />

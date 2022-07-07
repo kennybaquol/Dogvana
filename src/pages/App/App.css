@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 *{
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .App {
@@ -9,7 +9,7 @@
 }
 
 input {
-  background-color: #e0d5e9 !important;
+  background-color: white;
   margin-bottom: 10px;
   border: 1px solid gray;
   border-radius: 5px;
@@ -59,4 +59,12 @@ button {
 button:hover{
   background: #3c026c;
   transform: scale(1.05);
+}
+
+a{
+  text-decoration: none;
+}
+
+.App{
+  background-color: #efeef1;
 }
