@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import Filter from '../../components/Filter/Filter'
 import PetCard from '../../components/PetCard/PetCard'
 
-export default function SearchPage({ showAnimals }) {
+export default function SearchPage({ showAnimals, animalData }) {
     const [filter, setFilter] = useState({
         breed: '',
         age: '',
@@ -37,6 +37,13 @@ export default function SearchPage({ showAnimals }) {
     useEffect(() => {
         (async () => {
             console.log('Type is now: ' + type)
+            // if (type.length > 0) {
+            // showAnimals(type, "poodle")
+            // }
+            // setAnimalData([])
+            const result = await showAnimals(type, "bernedoodle");
+            console.log('Use effect[type] result data: ')
+            console.log(result.data.animals)
         })()
     }, [type])
 

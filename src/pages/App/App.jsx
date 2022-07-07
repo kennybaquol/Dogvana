@@ -33,7 +33,7 @@ export default function App() {
       const temp = array[i]
       array[i] = array[j]
       array[j] = temp
-    } 
+    }
   }
 
   async function showAnimals(animalType, searchBreed) {
@@ -46,7 +46,7 @@ export default function App() {
         page,
         limit: 100,
       });
-      console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
+      // console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
       let dogIdx = (page - 1) * 100;
       apiResult.data.animals.forEach(function (animal) {
         let firstImageKey = Object.keys(animal.photos[0])[0]
@@ -64,7 +64,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const result = await showAnimals("Dog", "Bernedoodle");
-      console.log(result.data.animals)
+      // console.log(result.data.animals)
       setAnimalData(result.data.animals)
     })()
   }, [])
@@ -76,7 +76,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             <Route path="/" element={<Home user={user} animalData={animalData} />} />
-            <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} />} />
+            <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} animalData={animalData} />} />
             <Route path="/animalCards/:id" element={<DetailPage />} />
           </Routes>
         </>
