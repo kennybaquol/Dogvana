@@ -6,7 +6,7 @@
 .animal-detail {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 40%;
     padding:0px 40px;
     align-items: flex-start;
     box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
@@ -26,4 +26,40 @@
 
 .detail-page {
     background-color:#efeef1;
+}
+
+.animal-detail-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.contact-info{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    padding:0px 40px;
+    align-items: flex-start;
+    box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+    -webkit-box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+    -moz-box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+    background-color: white;
+    border-radius: 10px;
+    height: 50%;
+    margin: 50px;
+    align-items: center;
+}
+
+legend{
+    font-size: 40px;
+    margin: 20px 0px;
+}
+
+.image-album{
+    background-color: black;
+    padding: 10px;
+}
+
+.contact-info span{
+    padding: 15px;
 }
