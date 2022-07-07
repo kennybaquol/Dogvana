@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import AuthPage from '../AuthPage/AuthPage'
 import SearchPage from '../SearchPage/SearchPage'
 import Home from '../Home/Home'
@@ -15,7 +15,6 @@ const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
 
 export default function App() {
   const [user, setUser] = useState(getUser())
-  const [animalData, setAnimalData] = useState([])
 
   let { id } = useParams()
 
@@ -39,10 +38,10 @@ export default function App() {
         page,
         limit: 100,
       });
-      console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
+      // console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
       let dogIdx = (page - 1) * 100;
       apiResult.data.animals.forEach(function (animal) {
-        let firstImageKey = Object.keys(animal.photos[0])[0]
+        // let firstImageKey = Object.keys(animal.photos[0])[0]
         // console.log(` -- ${++dogIdx}: ${animal.name} id: ${animal.id} url: ${animal.url} photos:${JSON.stringify(animal.photos[0][firstImageKey])}`);
         // console.log(JSON.stringify(animal))
       });
@@ -60,9 +59,9 @@ export default function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/" element={<Home user={user} animalData={animalData} showAnimals={showAnimals} setAnimalData={setAnimalData} />} />
+            <Route path="/" element={<Home user={user} showAnimals={showAnimals} />} />
             <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} />} />
-            <Route path="/animalCards/:id" element={<DetailPage animalData={animalData} setAnimalData={setAnimalData} user={user} />} />
+            <Route path="/animalCards/:id" element={<DetailPage user={user} />} />
           </Routes>
         </>
         :
