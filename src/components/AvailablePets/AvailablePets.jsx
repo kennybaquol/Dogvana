@@ -1,13 +1,15 @@
+import { useState, useEffect } from 'react';
 import './AvailablePets.css'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function AvailablePets({ animalData, showAnimals, setAnimalData }) {
-
+export default function AvailablePets({ showAnimals }) {
+  const [animalData, setAnimalData] = useState([])
+  
   useEffect(() => {
     (async () => {
       const result = await showAnimals("Dog", "Bernedoodle");
-      console.log(result.data.animals)
+      // console.log(result.data.animals)
       setAnimalData(result.data.animals)
     })()
   }, [])
