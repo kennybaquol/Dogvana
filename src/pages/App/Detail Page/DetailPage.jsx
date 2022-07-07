@@ -3,9 +3,10 @@ import { useParams, Link } from 'react-router-dom'
 import './DetailPage.css'
 const petfinder = require("@petfinder/petfinder-js");
 
-export default function DetailPage({ setAnimalData, animalData, user }) {
+export default function DetailPage({ user }) {
     const { id } = useParams()
     const [loading, setLoading] = useState(true)
+    const [animalData, setAnimalData] = useState([])
 
     const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
 

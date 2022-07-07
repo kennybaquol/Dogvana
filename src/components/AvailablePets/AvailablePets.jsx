@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './AvailablePets.css'
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function AvailablePets({ showAnimals }) {
