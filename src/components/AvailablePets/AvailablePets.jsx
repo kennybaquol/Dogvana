@@ -17,16 +17,16 @@ export default function AvailablePets({ animalData, showAnimals, setAnimalData }
       <h1>Pets Available for Adoption</h1>
       { animalData.length > 0 ? 
       <div className="available-pets">
-        <Link to="/" className="available-pet-card">
+        <Link to={`/animalCards/${animalData[0].id}`} className="available-pet-card">
           <img className="available-pet-card-image"src={animalData[0].photos[0].full}/>
         </Link>
-        <Link to="/" className="available-pet-card"href="/">
+        <Link to={`/animalCards/${animalData[1].id}`} className="available-pet-card"href="/">
           <img className="available-pet-card-image" src={animalData[1].photos[0].full}/>
         </Link>
-        <Link to="/" className="available-pet-card"href="/">
+        <Link to={`/animalCards/${animalData[2].id}`} className="available-pet-card"href="/">
           <img className="available-pet-card-image" src={animalData[2].photos[0].full}/>
         </Link>
-        <Link to="/" className="available-pet-card"href="/">
+        <Link to={`/animalCards/${animalData[3].id}`} className="available-pet-card"href="/">
           <img className="available-pet-card-image" src={animalData[3].photos[0].full}/>
         </Link>
       </div>

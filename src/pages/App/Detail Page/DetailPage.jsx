@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import './DetailPage.css'
 const petfinder = require("@petfinder/petfinder-js");
 
@@ -27,27 +27,37 @@ export default function DetailPage({ setAnimalData, animalData, user }) {
         })()
     }, [])
 
-    if (loading){
+    if (loading) {
         return <div>Loading...</div>
     }
 
     return (
         <div className="detail-page">
             <div className='button-container'>
-                <button className="back-button">Go Back</button>
+                <Link to="/">
+                    <button className="back-button">Go Back</button>
+                </Link>
             </div>
             <div className="image-album">
                 <img src={animalData.primary_photo_cropped.medium} alt="dog picture" />
             </div>
-            <article className="animal-detail">
-                <h1 className="pet-name">{animalData.name}</h1>
-                <span>{animalData.breeds.primary} • {animalData.contact.address.city}, {animalData.contact.address.state}</span>
-                <span>{animalData.age} • {animalData.size} • {animalData.gender} • {animalData.colors.primary} {animalData.colors.secondary}</span>
-                <h3>Meet {animalData.name} !</h3>
-                <p>{animalData.description}</p>
-                <p>{animalData.contact.email}</p>
-            </article>
-
+            <div className="animal-detail-container">
+                <article className="animal-detail">
+                    <h1 className="pet-name">{animalData.name}</h1>
+                    <span>{animalData.breeds.primary} • {animalData.contact.address.city},{animalData.contact.address.state}</span>
+                    <span>{animalData.age} • {animalData.size} • {animalData.gender} • {animalData.colors.primary} {animalData.colors.secondary}</span>
+                    <h3>Meet {animalData.name}</h3>
+                    <p>{animalData.description}</p>
+                </article>
+                <aside className="contact-info">
+                    <legend>Contact</legend>
+                    <span>{animalData.contact.email}</span>
+                    <br />
+                    <span> {animalData.contact.phone}</span>
+                    <br />
+                    <span>{animalData.contact.address.city}, {animalData.contact.address.state} {animalData.contact.address.postcode}</span>
+                </aside>
+            </div>
         </div>
 
     )
