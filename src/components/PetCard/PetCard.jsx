@@ -6,7 +6,6 @@ export default function PetCard({ animalData }) {
       <div>PetCard</div>
       <br />
       {animalData.length > 0 ?
-
         <>
           {animalData.map(animal => (
 
