@@ -78,29 +78,6 @@ export default function LoginForm({ setUser }) {
           <button type="submit">LOG IN</button>
         </form>
       </div>
-
-      {/* Google login button */}
-      <div>
-        {
-          loginData ? (
-            <div>
-              <h3>You logged in as {loginData.email}</h3>
-              <button onClick={handleLogout}>Logout</button>
-            </div>
-          )
-            : (
-              <GoogleLogin
-                clientId={cId}
-                buttonText="Log in with Google"
-                onSuccess={handleLogin}
-                onFailure={handleFailure}
-                cookiePolicy={'single_host_origin'}
-              ></GoogleLogin>
-            )
-        }
-      </div>
-
-      <p className="error-message">&nbsp;{error}</p>
     </div>
   );
 }
