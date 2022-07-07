@@ -1,45 +1,15 @@
-// import { useEffect } from 'react'
 import './AvailablePets.css'
-// import showAnimals from '../../../api'
-import { Link } from 'react-router-dom'
-
 
 export default function AvailablePets({ animalData }) {
-  // useEffect(function () {
-  //     if (animalData[0].id) {
-  //         console.log('Home, animal id: ' + animalData[0].id)
-  //     }
-  // }, [animalData]) 
 
   return (
     <>
       <h1>Pets Available for Adoption</h1>
       <div className="available-pets">
-
-        <Link to="/">
-          <span>
-            Pet1
-          </span>
-        </Link>
-
-        <Link to="/">
-          <span>
-            Pet2
-          </span>
-        </Link>
-
-        <Link to="/">
-          <span>
-            Pet3
-          </span>
-        </Link>
-
-        <Link to="/">
-          <span>
-            Pet4
-          </span>
-        </Link>
-
+        <a className="available-pet-card"href="/"><img src={animalData[0].photos[0].full}/></a>
+        <a className="available-pet-card"href="/"><img src={animalData[1].photos[0].full}/></a>
+        <a className="available-pet-card"href="/"><img src={animalData[2].photos[0].full}/></a>
+        <a className="available-pet-card"href="/"><img src={animalData[3].photos[0].full}/></a>
       </div>
     </>
   )
