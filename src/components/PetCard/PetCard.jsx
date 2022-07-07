@@ -1,19 +1,6 @@
-import { useState } from "react"
-import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 export default function PetCard({ animalData }) {
-  // const [animalData, setAnimalData] = useState([])
-
-  // useEffect(() => {
-  //   (async () => {
-  //     // if (animal.length > 0)
-  //     console.log('Animals passed down to Pet car are: ')
-  //     console.log(animals)
-  //     await setAnimalData(animals)
-  //   })()
-  // }, [])
-
   return (
     <>
       <div>PetCard</div>
