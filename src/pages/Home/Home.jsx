@@ -11,14 +11,6 @@ export default function Home({ animalData }) {
         console.log(expDate)
     }
 
-    // *KB TESTING*
-    // useEffect(() => {
-    //     (async () => {
-    //         const updatedAnimals = animalData
-    //         setAnimals(upd)
-    //     })()
-    //   }, [])
-
     return (
         <>
             <h1>Home</h1>
