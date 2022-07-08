@@ -1,4 +1,6 @@
 const Favorite = require('../../models/favorite')
+const User = require('../../models/user')
+import { getUser } from '../../utilities/users-service'
 
 module.exports = {
     index,
@@ -27,7 +29,36 @@ async function show(req, res) {
 // Create route
 async function create(req, res) {
     // Baby step
-    await console.log('Running create route for favorites')
+    console.log('Running create route for favorites')
+    console.log(req.body)
+
+    Favorite.create({
+        id: req.body.id,
+        name: req.body.name
+    }, (error, favorite) => {
+        if (error) {
+            console.log(error)
+        }
+        else {
+            console.log('created Favorite')
+            User.updateOne({ name: getUser() },
+                {
+                    $addToSet: {
+                        favorites: favorite
+                    }
+                }, (error, user) => {
+
+                    if (error) {
+                        console.log(error)
+                    }
+                    else {
+                        console.log('Successfully added favorite to user')
+                    }
+                }
+            )
+        }
+    })
+
     // req.body.user = req.user._id
     // const favorite = Favorite.create(req.body)
     const favorite = 'hello'

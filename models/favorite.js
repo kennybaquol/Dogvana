@@ -18,10 +18,20 @@ const noteSchema = new Schema({
 
 // Make favorites schema
 const favoritesSchema = new Schema({
+    id: String,
+    // type: String,
     name: String,
-    category: String,
-    // *ENTER THE REST HERE*
-    dateUploaded: Date,
+    breeds: [],
+    // contact: {},
+    age: String,
+    size: String,
+    gender: String,
+    colors: [],
+    description: String,
+
+    // Contact section
+    contact: {},
+    
     note: [{ type: noteSchema }]
 })
 

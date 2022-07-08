@@ -3,6 +3,31 @@ const { Schema } = mongoose
 const SALT_ROUNDS = 6
 const bcrypt = require('bcrypt')
 
+// Make note schema
+const noteSchema = new Schema({
+    comment: String,
+    // *ENTER THE REST HERE*
+})
+
+// Make favorites schema
+const favoritesSchema = new Schema({
+    id: String,
+    // type: String,
+    name: String,
+    breeds: [],
+    // contact: {},
+    age: String,
+    size: String,
+    gender: String,
+    colors: [],
+    description: String,
+
+    // Contact section
+    contact: {},
+    
+    note: [{ type: noteSchema }]
+})
+
 const userSchema = new Schema({
     name: {type: String, required: true},
     email: {
@@ -17,7 +42,8 @@ const userSchema = new Schema({
         trim: true,
         minLength: 3,
         required: true
-    }
+    },
+    favorites: [{ type: favoritesSchema }]
 }, {
     timestamps: true,
     toJSON: {
