@@ -1,15 +1,32 @@
-export default function Filter({filter}) {
+export default function Filter({ filter }) {
+  // {
+  //   for (const key in filter) {
+  //     // console.log(key)
+  //     console.log(filter.key)
+  //     console.log(filter.type)
+
+  //   }
+  // }
+
   return (
     <aside className="filter">
-        {Object.keys(filter).map(filterName => (
-        <select className="filter-select"name={filterName}>
-            <option value="Dog">Dog</option>
-            <option value="Cat">Cat</option>
-            <option value="Giraffe">Giraffe</option>
-            <option value="Zubat">Zubat</option>
-        </select>
-        ))}
-    </aside>
+      <select className="filter-select" >
+        {filter.type.map(filterName => (
+          < option value={filterName} > {filterName}</option>))}
+      </select>
+      <select className="filter-select" >
+        {filter.breed.map(filterName => (
+          < option value={filterName} > {filterName}</option>))}
+      </select>
+      <select className="filter-select" >
+        {filter.age.map(filterName => (
+          < option value={filterName} > {filterName}</option>))}
+      </select>
+      <select className="filter-select" >
+        {filter.gender.map(filterName => (
+          < option value={filterName} > {filterName}</option>))}
+      </select>
+    </aside >
   )
 }
 

@@ -5,10 +5,10 @@ import PetCard from '../../components/PetCard/PetCard'
 
 export default function SearchPage({ showAnimals, client }) {
     const [filter, setFilter] = useState({
-        breed: '',
-        age: '',
-        gender: '',
-        sortBy: ''
+        type: ['cat', 'dog', 'other'],
+        breed: [],
+        age: [],
+        gender: [],
     })
     const location = useLocation()
     const [type, setType] = useState('')
