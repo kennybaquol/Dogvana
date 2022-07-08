@@ -9,6 +9,8 @@ import { getUser } from '../../utilities/users-service'
 import DetailPage from './Detail Page/DetailPage';
 import React from 'react';
 import SeparationBand from '../../components/SeparationBand/SeparationBand';
+import Favorites from './Favorites/Favorites';
+
 const petfinder = require("@petfinder/petfinder-js");
 // const apiKey = process.env.API_KEY
 const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
@@ -18,6 +20,7 @@ const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
 
 export default function App() {
   const [user, setUser] = useState(getUser())
+  const [favorite, setFavorite] = useState([])
 
   let { id } = useParams()
 
@@ -73,6 +76,7 @@ export default function App() {
             <Route path="/" element={<Home user={user} showAnimals={showAnimals} />} />
             <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} />} />
             <Route path="/animalCards/:id" element={<DetailPage user={user} />} />
+            <Route path="/favorites" element={<Favorites/>}/>
           </Routes>
         </>
         :
