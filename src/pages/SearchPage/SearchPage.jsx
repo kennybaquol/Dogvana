@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Filter from '../../components/Filter/Filter'
 import PetCard from '../../components/PetCard/PetCard'
+import './SearchPage.css'
 
 export default function SearchPage({ showAnimals, client }) {
     const [filter, setFilter] = useState({
@@ -13,10 +14,8 @@ export default function SearchPage({ showAnimals, client }) {
     const location = useLocation()
     const [type, setType] = useState('')
     const [animalData, setAnimalData] = useState([])
+    const [loading, setLoading] = useState(false)
 
-    function handleChange(event) {
-
-    }
 
     async function showAnimals(animalType) {
         let page = 1;
@@ -83,13 +82,12 @@ export default function SearchPage({ showAnimals, client }) {
                 // Push 10 results to the animals array to be passed down to PetCard
                 for (let i = 0; i < result.data.animals.length; i++) {
                     if (result.data.animals[i].photos.length > 0) {
-                        console.log('i: ' + i)
                         let currentType = result.data.animals[i].type
                         currentType = currentType.toLowerCase()
                         if (currentType === type.toLowerCase()) {
                             animals.push(result.data.animals[i])
                         }
-                        if (animals.length >= 10) break
+                        if (animals.length >= 20) break
                     }
                 }
             }
@@ -101,17 +99,18 @@ export default function SearchPage({ showAnimals, client }) {
             console.log('Use effect in SearchPage - animals array is now:')
             console.log(animals)
             await setAnimalData(animals)
+            setLoading(true)
         })()
     }, [type])
 
+    if(!loading) {
+        return <div>Loading...</div>
+    }
+
     return (
-        <>
+        <main className="search-page-container">
             <Filter filter={filter} />
-            {animalData.length > 0 ?
-                <PetCard animalData={animalData} />
-                :
-                <h3>Loading...</h3>
-            }
-        </>
+            <PetCard animalData={animalData} /> 
+        </main>
     )
 }
