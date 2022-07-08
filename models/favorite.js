@@ -22,16 +22,12 @@ const favoritesSchema = new Schema({
     // type: String,
     name: String,
     breeds: [],
-    // contact: {},
     age: String,
     size: String,
     gender: String,
     colors: [],
     description: String,
-
-    // Contact section
-    contact: {},
-    
+    contact: [],
     note: [{ type: noteSchema }]
 })
 
