@@ -1,6 +1,26 @@
 .available-pets{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin: 50px 480px;
+    background-color: #efeef1;
+    padding-bottom: 60px;
+}
+
+.available-pet-card{
+    display: flex;
+}
+
+.available-pet-card-image{
+    width: 12em;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid #d2d1d3;
+    box-shadow: 0 4px 4px #0000000d;
+}
+
+.loading{
+    background-color: #efeef1;
 }
 
 

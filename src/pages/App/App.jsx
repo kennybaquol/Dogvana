@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import AuthPage from '../AuthPage/AuthPage'
 import SearchPage from '../SearchPage/SearchPage'
 import Home from '../Home/Home'
@@ -8,23 +8,18 @@ import NavBar from '../../components/NavBar/NavBar';
 import { getUser } from '../../utilities/users-service'
 import DetailPage from './Detail Page/DetailPage';
 import React from 'react';
+import SeparationBand from '../../components/SeparationBand/SeparationBand';
 const petfinder = require("@petfinder/petfinder-js");
-
-
+// const apiKey = process.env.API_KEY
+const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
+// const apiSecret = process.env.SECRET
+const apiSecret = 'YELMxB6N6bVaiMEz0f7GqqccmyF8bu04YiXyvAg8'
+const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
 
 export default function App() {
   const [user, setUser] = useState(getUser())
-  const [animalData, setAnimalData] = useState([])
 
-  // *TO BE REPLACED WITH .ENV DATA* -KB
-  // const apiKey = 'ZjCl1TsvtcaRbbI9YrNPR3Tb7RtDFrC62KtjXleOl22FIIyvQi'
-  const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
-  // const apiSecret = 'rGvvVKhJ7Ho20y6Mf3Y20rKiMKf4yEN4UBIDx1HF'
-  const apiSecret = 'YELMxB6N6bVaiMEz0f7GqqccmyF8bu04YiXyvAg8'
-  // *TO BE REPLACED WITH .ENV DATA* -KB
-
-  const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
-  let { animalId } = useParams()
+  let { id } = useParams()
 
   const animalCategories = ['cat', 'bird', 'dog', 'horse', 'rabbit']
   const shuffleAnimals = (array) => {
@@ -38,6 +33,13 @@ export default function App() {
 
   async function showAnimals(animalType, searchBreed) {
     let page = 1;
+
+    // *TEST* -KB
+    // console.log('key and secret: ')
+    // console.log(apiKey)
+    // console.log(apiSecret)
+    // *TEST* -KB
+
     let apiResult
     do {
       apiResult = await client.animal.search({
@@ -46,10 +48,10 @@ export default function App() {
         page,
         limit: 100,
       });
-      console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
+      // console.log(apiResult.data.pagination, apiResult.data.pagination.total_pages)
       let dogIdx = (page - 1) * 100;
       apiResult.data.animals.forEach(function (animal) {
-        let firstImageKey = Object.keys(animal.photos[0])[0]
+        // let firstImageKey = Object.keys(animal.photos[0])[0]
         // console.log(` -- ${++dogIdx}: ${animal.name} id: ${animal.id} url: ${animal.url} photos:${JSON.stringify(animal.photos[0][firstImageKey])}`);
         // console.log(JSON.stringify(animal))
       });
@@ -61,23 +63,16 @@ export default function App() {
     return apiResult;
   }
 
-  useEffect(() => {
-    (async () => {
-      const result = await showAnimals("Dog", "Bernedoodle");
-      console.log(result.data.animals)
-      setAnimalData(result.data.animals)
-    })()
-  }, [])
-
   return (
     <main className="App">
       {user ?
         <>
           <NavBar user={user} setUser={setUser} />
+          <SeparationBand />
           <Routes>
-            <Route path="/" element={<Home user={user} animalData={animalData} />} />
+            <Route path="/" element={<Home user={user} showAnimals={showAnimals} />} />
             <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} />} />
-            <Route path="/animalCards/:id" element={<DetailPage />} />
+            <Route path="/animalCards/:id" element={<DetailPage user={user} />} />
           </Routes>
         </>
         :

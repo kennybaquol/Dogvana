@@ -2,10 +2,9 @@ import * as usersService from '../../utilities/users-service'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import PetCategoryCards from '../../components/PetCategoryCards/PetCategoryCards'
 import AvailablePets from '../../components/AvailablePets/AvailablePets'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import './Home.css'
 
-export default function Home({ animalData }) {
+export default function Home({ showAnimals }) {
     async function handleCheckToken() {
         const expDate = await usersService.checkToken()
         console.log(expDate)
@@ -13,10 +12,9 @@ export default function Home({ animalData }) {
 
     return (
         <>
-            <h1>Home</h1>
             <SearchBar />
             <PetCategoryCards />
-            <AvailablePets animalData={animalData} />
+            <AvailablePets showAnimals={showAnimals} />
         </>
     )
 }
