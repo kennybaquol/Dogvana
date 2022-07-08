@@ -1,0 +1,19 @@
+.filter{
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    margin: 70px 0px 0px 200px;
+    position: absolute;
+}
+
+.filter-select{
+    margin: 20px 0px;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    border: 1px solid #d2d1d3;
+    border-radius: 15px;
+    color:#6504b5;
+    background-color: white;
+    box-shadow: 0 4px 4px #0000000d;
+}
