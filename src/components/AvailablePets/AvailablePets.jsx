@@ -8,7 +8,7 @@ export default function AvailablePets({ showAnimals }) {
   useEffect(() => {
     (async () => {
       const result = await showAnimals("Dog", "Bernedoodle");
-      // console.log(result.data.animals)
+      console.log(result.data.animals)
       setAnimalData(result.data.animals)
     })()
   }, [])
@@ -20,15 +20,19 @@ export default function AvailablePets({ showAnimals }) {
       <div className="available-pets">
         <Link to={`/animalCards/${animalData[0].id}`} className="available-pet-card">
           <img className="available-pet-card-image"src={animalData[0].photos[0].full}/>
+          <div className='available-pet-name'>{animalData[0].name}</div>
         </Link>
         <Link to={`/animalCards/${animalData[1].id}`} className="available-pet-card"href="/">
           <img className="available-pet-card-image" src={animalData[1].photos[0].full}/>
+          <div className='available-pet-name'>{animalData[1].name}</div>
         </Link>
         <Link to={`/animalCards/${animalData[2].id}`} className="available-pet-card"href="/">
           <img className="available-pet-card-image" src={animalData[2].photos[0].full}/>
+          <div className='available-pet-name'>{animalData[2].name}</div>
         </Link>
         <Link to={`/animalCards/${animalData[3].id}`} className="available-pet-card"href="/">
           <img className="available-pet-card-image" src={animalData[3].photos[0].full}/>
+          <div className='available-pet-name'>{animalData[3].name}</div>
         </Link>
       </div>
       :
