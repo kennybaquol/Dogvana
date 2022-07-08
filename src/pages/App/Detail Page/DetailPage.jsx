@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import './DetailPage.css'
+import * as favoritesAPI from '../../../utilities/favorites-api'
 const petfinder = require("@petfinder/petfinder-js");
 
 export default function DetailPage({ user }) {
@@ -21,8 +22,13 @@ export default function DetailPage({ user }) {
     }
 
     const onFavorite = () => {
-        if (!favorite) setFavorite(true)
+        if (!favorite) {
+            setFavorite(true)
+            // Call the create route for favorites
+            const fav = favoritesAPI.addToFavorites(animalData)
+        }
         else setFavorite(false)
+
     }
 
     useEffect(() => {
@@ -66,12 +72,12 @@ export default function DetailPage({ user }) {
                         <span>{animalData.contact.address.city}, {animalData.contact.address.state} {animalData.contact.address.postcode}</span>
                     </div>
                     <div className='favorite-button'>
-                        {!favorite ? 
-                        <button onClick={onFavorite}>Favorite ♡</button>
+                        {!favorite ?
+                            <button onClick={onFavorite}>Favorite ♡</button>
                             :
-                        <button onClick={onFavorite}>Unfavorite ♡</button>
+                            <button onClick={onFavorite}>Unfavorite ♡</button>
                         }
-                
+
                     </div>
                 </aside>
             </div>
