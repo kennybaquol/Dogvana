@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom"
+import './PetCard.css'
 
 export default function PetCard({ animalData }) {
   return (
-    <>
-      <div>PetCard</div>
-      <br />
+    <div className="search-page">
       {animalData.length > 0 ?
         <>
           {animalData.map(animal => (
 
-            <div key={animal.id} className="available-pets">
-              <Link to={`/animalCards/${animal.id}`} className="available-pet-card">
-                <img className="available-pet-card-image" src={animal.photos[0].full} />
+            <div key={animal.id} className="pet-card">
+              <Link to={`/animalCards/${animal.id}`} className="pet-card-link">
+                <img className="pet-card-image" src={animal.photos[0].full} />
               </Link>
               <br />
             </div>
@@ -24,7 +23,6 @@ export default function PetCard({ animalData }) {
         :
         <h3>Lel.</h3>
       }
-      {/* // Name, breed, size, age, & gender */}
-    </>
+    </div>
   )
 }

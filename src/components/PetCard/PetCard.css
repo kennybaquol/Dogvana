@@ -1,0 +1,15 @@
+.search-page{
+    display: grid;
+    grid-template-columns: repeat(3, 25%);
+    justify-content: center;
+    margin: 80px 0px;
+}
+
+.pet-card{
+    padding: 10px;
+}
+
+.pet-card-image{
+    width: 20em;
+    height: 25em;;
+}

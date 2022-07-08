@@ -5,10 +5,7 @@ import PetCard from '../../components/PetCard/PetCard'
 
 export default function SearchPage({ showAnimals, client }) {
     const [filter, setFilter] = useState({
-<<<<<<< HEAD
-=======
-        type: ['cat', 'dog', 'other'],
->>>>>>> main
+        type: [],
         breed: [],
         age: [],
         gender: [],
@@ -70,7 +67,7 @@ export default function SearchPage({ showAnimals, client }) {
             searchTerm = searchTerm.slice(1)
             searchTerm = (firstChar + searchTerm)
             console.log(searchTerm)
-            await setType(searchTerm)
+            setType(searchTerm)
         })()
     }, [])
 
