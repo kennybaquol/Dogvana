@@ -74,9 +74,13 @@ export default function App() {
           <SeparationBand />
           <Routes>
             <Route path="/" element={<Home user={user} showAnimals={showAnimals} />} />
-            <Route path="/search/*" element={<SearchPage showAnimals={showAnimals} />} />
+            <Route path="/search/*" element={<SearchPage 
+            // showAnimals={showAnimals} 
+            client={client}
+            />} />
             <Route path="/animalCards/:id" element={<DetailPage user={user} />} />
             <Route path="/favorites" element={<Favorites/>}/>
+            <Route path="/favorites/:id" element={<Favorites/>}/>
           </Routes>
         </>
         :
