@@ -19,7 +19,7 @@ const noteSchema = new Schema({
 // Make favorites schema
 const favoritesSchema = new Schema({
     id: String,
-    // type: String,
+    photo: String,
     name: String,
     breeds: [],
     age: String,

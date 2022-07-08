@@ -34,6 +34,7 @@ async function create(req, res) {
 
     Favorite.create({
         id: req.body.id,
+        photo: req.body.photos[0].full,
         name: req.body.name,
         breeds: [req.body.breeds.primary, req.body.breeds.secondary],
         age: req.body.age,
