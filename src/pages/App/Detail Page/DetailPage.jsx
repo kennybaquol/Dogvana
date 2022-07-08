@@ -7,6 +7,7 @@ export default function DetailPage({ user }) {
     const { id } = useParams()
     const [loading, setLoading] = useState(true)
     const [animalData, setAnimalData] = useState([])
+    const [favorite, setFavorite] = useState(false)
 
     const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
 
@@ -17,6 +18,11 @@ export default function DetailPage({ user }) {
     async function getAnimal(animalId) {
         let apiResult = await client.animal.show(animalId)
         return apiResult
+    }
+
+    const onFavorite = () => {
+        if (!favorite) setFavorite(true)
+        else setFavorite(false)
     }
 
     useEffect(() => {
@@ -51,12 +57,22 @@ export default function DetailPage({ user }) {
                     <p>{animalData.description}</p>
                 </article>
                 <aside className="contact-info">
-                    <legend>Contact</legend>
-                    <span>{animalData.contact.email}</span>
-                    <br />
-                    <span> {animalData.contact.phone}</span>
-                    <br />
-                    <span>{animalData.contact.address.city}, {animalData.contact.address.state} {animalData.contact.address.postcode}</span>
+                    <div className="contact-card">
+                        <legend>Contact</legend>
+                        <span>{animalData.contact.email}</span>
+                        <br />
+                        <span> {animalData.contact.phone}</span>
+                        <br />
+                        <span>{animalData.contact.address.city}, {animalData.contact.address.state} {animalData.contact.address.postcode}</span>
+                    </div>
+                    <div className='favorite-button'>
+                        {!favorite ? 
+                        <button onClick={onFavorite}>Favorite ♡</button>
+                            :
+                        <button onClick={onFavorite}>Unfavorite ♡</button>
+                        }
+                
+                    </div>
                 </aside>
             </div>
         </div>
