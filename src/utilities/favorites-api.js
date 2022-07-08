@@ -1,6 +1,6 @@
 import sendRequest from './send-request';
 
-const BASE_URL = '/api/animalCards';
+const BASE_URL = '/api/favorites';
 
 export function getAll() {
   return sendRequest(BASE_URL);

@@ -15,8 +15,8 @@ const noteSchema = new Schema({
     // *ENTER THE REST HERE*
 })
 
-// Make animalCards schema
-const animalCardsSchema = new Schema({
+// Make favorites schema
+const favoritesSchema = new Schema({
     name: String,
     category: String,
     // *ENTER THE REST HERE*
@@ -25,9 +25,9 @@ const animalCardsSchema = new Schema({
 })
 
 // make AnimalCard model
-const AnimialCard = model("AnimalCard", animalCardsSchema)
+const Favorite = model("Favorite", favoritesSchema)
 
 ////////////////////////////////////////////////
 // Export Model
 ////////////////////////////////////////////////
-module.exports = AnimialCard
+module.exports = Favorite
