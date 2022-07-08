@@ -1,12 +1,13 @@
 export default function Filter({filter}) {
+  const filterValues = Object.keys(filter)
+  for (const key in filter){
+    console.log(key)
+  }
   return (
     <aside className="filter">
-        {Object.keys(filter).map(filterName => (
+        {filterValues.map(filterName => (
         <select className="filter-select"name={filterName}>
-            <option value="Dog">Dog</option>
-            <option value="Cat">Cat</option>
-            <option value="Giraffe">Giraffe</option>
-            <option value="Zubat">Zubat</option>
+            <option value={filterName}>{filterName}</option>
         </select>
         ))}
     </aside>
