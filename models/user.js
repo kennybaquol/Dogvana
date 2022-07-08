@@ -17,7 +17,12 @@ const userSchema = new Schema({
         trim: true,
         minLength: 3,
         required: true
-    }
+    }, 
+        favorites: [{
+            ObjectID: String
+        }],
+        
+    
 }, {
     timestamps: true,
     toJSON: {
