@@ -15,7 +15,11 @@ export default function PetCard({ animalData }) {
               </Link>
               <br />
             </div>
+            
           ))}
+          
+          <button onClick={null} className='favorite-button'>add to favs</button>
+          
         </>
         :
         <h3>Lel.</h3>
