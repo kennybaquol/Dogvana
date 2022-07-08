@@ -25,7 +25,7 @@ export default function DetailPage({ user }) {
         if (!favorite) {
             setFavorite(true)
             // Call the create route for favorites
-            const fav = favoritesAPI.addToFavorites(animalData)
+            const fav = favoritesAPI.addToFavorites(animalData, user)
         }
         else setFavorite(false)
 

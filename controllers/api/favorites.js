@@ -27,22 +27,23 @@ async function show(req, res) {
 }
 
 // Create route
-async function create(req, res) {
+async function create(req, res, user) {
     // Baby step
     console.log('Running create route for favorites')
-    console.log(req.body)
+    // console.log(req.body)
+    console.log(req.body.user.name)
 
     Favorite.create({
-        id: req.body.id,
-        photo: req.body.photos[0].full,
-        name: req.body.name,
-        breeds: [req.body.breeds.primary, req.body.breeds.secondary],
-        age: req.body.age,
-        size: req.body.size,
-        gender: req.body.gender,
-        colors: [req.body.colors.primary, req.body.colors.secondary, req.body.colors.tertiary],
-        description: req.body.description,
-        contact: [req.body.contact.email, req.body.contact.phone],
+        id: req.body.animalData.id,
+        photo: req.body.animalData.photos[0].full,
+        name: req.body.animalData.name,
+        breeds: [req.body.animalData.breeds.primary, req.body.animalData.breeds.secondary],
+        age: req.body.animalData.age,
+        size: req.body.animalData.size,
+        gender: req.body.animalData.gender,
+        colors: [req.body.animalData.colors.primary, req.body.animalData.colors.secondary, req.body.animalData.colors.tertiary],
+        description: req.body.animalData.description,
+        contact: [req.body.animalData.contact.email, req.body.animalData.contact.phone],
     }, (error, favorite) => {
         if (error) {
             console.log(error)

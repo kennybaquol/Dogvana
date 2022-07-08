@@ -10,7 +10,13 @@ export function getById(id) {
   return sendRequest(`${BASE_URL}/${id}`);
 }
 
-export function addToFavorites(animalData) {
+export function addToFavorites(animalData, user) {
   console.log('running addToFavorites in utilities/favorites-api !')
-  return sendRequest(BASE_URL, 'POST', animalData)
+  console.log(user)
+  const data = {
+    animalData: animalData,
+    user: user
+  }
+  console.log(data)
+  return sendRequest(BASE_URL, 'POST', data)
 }
