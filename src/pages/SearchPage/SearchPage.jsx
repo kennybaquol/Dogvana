@@ -14,9 +14,6 @@ export default function SearchPage({ showAnimals }) {
     const [type, setType] = useState('')
     const [animalData, setAnimalData] = useState([])
 
-    // Left temporarily empty for testing -KB
-    const animals = []
-
     function handleChange(event) {
 
     }
@@ -26,20 +23,16 @@ export default function SearchPage({ showAnimals }) {
         (async () => {
             let searchTerm = location.pathname
             searchTerm = searchTerm.slice(8)
-            let spaceCounter = 0
             for (let i = 0; i < searchTerm.length; i++) {
                 if (searchTerm.includes('%20')) {
                     searchTerm = searchTerm.replace('%20', ' ')
                 }
             }
             setType(searchTerm)
-
             console.log('Type is now: ' + type)
-            // if (type.length > 0) {
-            // showAnimals(type, "poodle")
-            // }
-            // setAnimalData([])
+            
             const result = await showAnimals(type, "poodle");
+            const animals = []
             // Push 10 results to the animals array to be passed down to PetCard
             for (let i = 0; i < 10; i++) {
                 animals.push(result.data.animals[i])
@@ -47,36 +40,15 @@ export default function SearchPage({ showAnimals }) {
 
             console.log('Use effect in SearchPage - animals array is now:')
             console.log(animals)
-            // console.log('Use effect[] result data: ')
-            // console.log(result.data.animals)
-            setAnimalData(result.data.animals)
-            console.log('animal data from SearchPage 1st render:')
-            console.log(animalData)
+            await setAnimalData(animals)
         })()
     }, [])
-
-    // useEffect(() => {
-    //     (async () => {
-
-    //     })()
-    // }, [type])
-
-
-    // Then pass the info down through map to the PetCard component
 
     return (
         <>
             <Filter filter={filter} />
             {animalData.length > 0 ?
-                <>
-                    <div className="available-pets">
-                        {animalData.map((t, idx) => (
-                            <PetCard animal={t} key={idx} />
-                        ))}
-                        {/* <PetCard animalData={animalData} /> */}
-                    </div>
-                    <br />
-                </>
+                <PetCard animalData={animalData} />
                 :
                 <h3>Loading...</h3>
             }

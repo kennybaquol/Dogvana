@@ -10,7 +10,9 @@ import DetailPage from './Detail Page/DetailPage';
 import React from 'react';
 import SeparationBand from '../../components/SeparationBand/SeparationBand';
 const petfinder = require("@petfinder/petfinder-js");
+// const apiKey = process.env.API_KEY
 const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
+// const apiSecret = process.env.SECRET
 const apiSecret = 'YELMxB6N6bVaiMEz0f7GqqccmyF8bu04YiXyvAg8'
 const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
 
@@ -31,6 +33,13 @@ export default function App() {
 
   async function showAnimals(animalType, searchBreed) {
     let page = 1;
+
+    // *TEST* -KB
+    // console.log('key and secret: ')
+    // console.log(apiKey)
+    // console.log(apiSecret)
+    // *TEST* -KB
+
     let apiResult
     do {
       apiResult = await client.animal.search({
