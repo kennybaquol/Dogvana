@@ -74,7 +74,7 @@ export default function App() {
           <SeparationBand />
           <Routes>
             <Route path="/" element={<Home user={user} showAnimals={showAnimals} />} />
-            <Route path="/search/*" element={<SearchPage 
+            <Route path="/search/:search" element={<SearchPage 
             // showAnimals={showAnimals} 
             client={client}
             />} />

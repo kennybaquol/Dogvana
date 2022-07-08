@@ -21,15 +21,17 @@
     box-shadow: 0 4px 4px #0000000d;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    padding: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .available-pet-card-image{
     width: 100%;
-    height: 100%;
-    border-radius: 5px;
+    height: 90%;
+    border-radius: 15px 15px 0px 0px;
     border: 1px solid #d2d1d3;
     box-shadow: 0 4px 4px #0000000d;
 }
