@@ -12,11 +12,22 @@ async function index(req, res) {
     // Baby step
     console.log('Running index page for favorites')
     console.log(req.body.name)
-    const user = 'lel'
-    const favorites = await Favorite.find({}).sort('name').exec()
+    const currentUser = User.findOne({ name: req.body.name }, (error, user) => {
+        if (error) {
+            console.log(error)
+        }
+        else {
+            console.log('Found the current user')
+            console.log('# of favorites that should pop up: ' + user.favorites.length)
+            res.json(user.favorites)
+            // res.json(user)
+            // const favorites = await user.Favorite.find({}).sort('name').exec()
+        }
+    })
+    // console.log(currentUser.favorites)
     // re-sort based upon the sortOrder of the categories
     // animalCards.sort((a, b) => a.category.sortOrder - b.category.sortOrder);
-    // res.json(favorites)
+    // res.json('hi')
 }
 
 // Show route
