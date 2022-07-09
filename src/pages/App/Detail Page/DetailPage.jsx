@@ -9,6 +9,7 @@ export default function DetailPage({ user }) {
     const [loading, setLoading] = useState(true)
     const [animalData, setAnimalData] = useState([])
     const [favorite, setFavorite] = useState(false)
+    const [note, setNote] = useState(false)
 
     const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
 
@@ -29,6 +30,11 @@ export default function DetailPage({ user }) {
         }
         else setFavorite(false)
 
+    }
+
+    const noteChange = () => {
+        if (!note) setNote(true)
+        else setNote(false)
     }
 
     useEffect(() => {
@@ -77,10 +83,25 @@ export default function DetailPage({ user }) {
                             :
                             <button onClick={onFavorite}>Unfavorite ♡</button>
                         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
                     </div>
                 </aside>
             </div>
+            <p className='note'>
+                    <h1>Notes</h1>
+                    {!note ? 
+                    <button onClick={noteChange}>Add a Note</button>
+                        :   
+                    <form onSubmit={noteChange}>
+                        <input type="text" />
+                        <input type="submit" />
+                    </form>
+                    }
+                    
+            </p>
         </div>
 
     )

@@ -12,6 +12,8 @@
     padding: 50px;
     width: 10%;
     margin: 0;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .pet-category-cards{
