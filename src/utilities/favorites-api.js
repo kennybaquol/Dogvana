@@ -5,7 +5,7 @@ const BASE_URL = '/api/favorites';
 export function getAll(user) {
   console.log('Running favorites-api getAll')
   console.log(user)
-  return sendRequest(BASE_URL, 'GET', user);
+  return sendRequest(BASE_URL);
 }
 
 export function getById(id, user) {

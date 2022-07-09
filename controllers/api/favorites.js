@@ -11,8 +11,8 @@ module.exports = {
 async function index(req, res) {
     // Baby step
     console.log('Running index page for favorites')
-    console.log(req.body.user.name)
-    const currentUser = User.findOne({ name: req.body.user.name }, (error, user) => {
+    console.log(req.user.name)
+    const currentUser = User.findOne({ name: req.user.name }, (error, user) => {
         if (error) {
             console.log(error)
             res.json(error)

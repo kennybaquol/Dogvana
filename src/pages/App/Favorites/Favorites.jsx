@@ -10,7 +10,7 @@ export default function Favorites({ user }) {
             console.log('Running useEffect for 1st render on Favorites page')
             console.log(user)
             // Call the index route for favorites
-            const fav = await favoritesAPI.getAll(user)
+            const fav = await favoritesAPI.getAll()
             console.log(fav)
             setFavorites(fav)
         })()
