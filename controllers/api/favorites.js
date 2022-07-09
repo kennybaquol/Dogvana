@@ -30,8 +30,31 @@ async function show(req, res) {
     // Baby step
     console.log('Running show page for favorites')
 
-    const favorite = await Favorite.findById(req.params.id);
-    res.json(favorite)
+    const currentUser = await User.findOne({ name: req.body.name }, (error, user) => {
+        if (error) {
+            console.log(error)
+            res.json(error)
+        }
+        else {
+            console.log('Found the current user')
+            const id = req.params.id
+            console.log('Looking for id of: ' + id)
+            const exists = false
+            for (let i = 0; i < user.favorites.length; i++) {
+                if (user.favorites[i] === id) {
+                    console.log('WE GOT EM')
+                    exists = true
+                    break
+                }
+            }
+            if (exists === true) {
+                res.json(user.favorites[i])
+            }
+            else {
+                res.json(user.favorites)
+            }
+        }
+    })
 }
 
 // Create route

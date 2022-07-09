@@ -6,8 +6,8 @@ export function getAll(user) {
   return sendRequest(BASE_URL, 'POST', user);
 }
 
-export function getById(id) {
-  return sendRequest(`${BASE_URL}/${id}`);
+export function getById(id, user) {
+  return sendRequest(`${BASE_URL}/${id}`, 'POST', user);
 }
 
 export function addToFavorites(animalData, user) {

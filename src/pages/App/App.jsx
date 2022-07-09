@@ -10,6 +10,7 @@ import DetailPage from './Detail Page/DetailPage';
 import React from 'react';
 import SeparationBand from '../../components/SeparationBand/SeparationBand';
 import Favorites from './Favorites/Favorites';
+import FavoriteDetailsPage from './FavoriteDetailsPage/FavoriteDetailsPage'
 
 const petfinder = require("@petfinder/petfinder-js");
 // const apiKey = process.env.API_KEY
@@ -80,7 +81,7 @@ export default function App() {
             />} />
             <Route path="/animalCards/:id" element={<DetailPage user={user} />} />
             <Route path="/favorites" element={<Favorites user={user}/>}/>
-            <Route path="/favorites/:id" element={<Favorites/>}/>
+            <Route path="/favorites/:id" element={<FavoriteDetailsPage user={user} />}/>
           </Routes>
         </>
         :
