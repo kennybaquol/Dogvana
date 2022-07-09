@@ -1,6 +1,5 @@
 const Favorite = require('../../models/favorite')
 const User = require('../../models/user')
-// import { getUser } from '../../utilities/users-service'
 
 module.exports = {
     index,
@@ -45,26 +44,26 @@ async function create(req, res, user) {
         description: req.body.animalData.description,
         contact: [req.body.animalData.contact.email, req.body.animalData.contact.phone],
     }, (error, favorite) => {
-        if (error) {
+        if (error, favorite) {
             console.log(error)
         }
         else {
             console.log('created Favorite')
-            // User.updateOne({ name: getUser() },
-            //     {
-            //         $addToSet: {
-            //             favorites: favorite
-            //         }
-            //     }, (error, user) => {
+            User.updateOne({ name: user.name },
+                {
+                    $addToSet: {
+                        favorites: favorite
+                    }
+                }, (error) => {
 
-            //         if (error) {
-            //             console.log(error)
-            //         }
-            //         else {
-            //             console.log('Successfully added favorite to user')
-            //         }
-            //     }
-            // )
+                    if (error) {
+                        console.log(error)
+                    }
+                    else {
+                        console.log('Successfully added favorite to user')
+                    }
+                }
+            )
         }
     })
 
