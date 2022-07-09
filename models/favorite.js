@@ -31,7 +31,7 @@ const favoritesSchema = new Schema({
     note: [{ type: noteSchema }]
 })
 
-// make AnimalCard model
+// make Favorite model
 const Favorite = model("Favorite", favoritesSchema)
 
 ////////////////////////////////////////////////

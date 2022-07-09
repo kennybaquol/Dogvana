@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const { Schema } = mongoose
+// const { Schema } = mongoose
+const { Schema, model } = mongoose
 const SALT_ROUNDS = 6
 const bcrypt = require('bcrypt')
 
@@ -12,19 +13,15 @@ const noteSchema = new Schema({
 // Make favorites schema
 const favoritesSchema = new Schema({
     id: String,
-    // type: String,
+    photo: String,
     name: String,
     breeds: [],
-    // contact: {},
     age: String,
     size: String,
     gender: String,
     colors: [],
     description: String,
-
-    // Contact section
-    contact: {},
-    
+    contact: [],
     note: [{ type: noteSchema }]
 })
 
@@ -60,4 +57,8 @@ userSchema.pre('save', async function(next) {
     return next()
 })
 
-module.exports = mongoose.model('User', userSchema)
+const User = model("User", userSchema)
+
+// module.exports = mongoose.model('User', userSchema)
+
+module.exports = User

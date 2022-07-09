@@ -8,7 +8,7 @@ router.get('/', favoritesCtrl.index);
 // GET /api/favorites/:id
 router.get('/:id', favoritesCtrl.show)
 
-// create 
-router.post('/', favoritesCtrl.create)
+// CREATE (POST) /api/favorites/create 
+router.post('/create', favoritesCtrl.create)
 
 module.exports = router;

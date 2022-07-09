@@ -79,7 +79,7 @@ export default function App() {
             client={client}
             />} />
             <Route path="/animalCards/:id" element={<DetailPage user={user} />} />
-            <Route path="/favorites" element={<Favorites/>}/>
+            <Route path="/favorites" element={<Favorites user={user}/>}/>
             <Route path="/favorites/:id" element={<Favorites/>}/>
           </Routes>
         </>

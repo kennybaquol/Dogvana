@@ -1,18 +1,13 @@
 import { useEffect } from "react"
-// import * as favoritesCtrl from "../../../../controllers/api/favorites"
-// import * as favoritesAPI from "../../../utilities/favorites-api"
+import * as favoritesAPI from "../../../utilities/favorites-api"
 
-export default function Favorites() {
-    // getAll()
+export default function Favorites({ user }) {
     useEffect(() => {
-        // (async () => {
+        (async () => {
             console.log('Running useEffect for 1st render on Favorites page')
-            // const favorites = favoritesAPI.getAll();
-
-            // router.get('/', favoritesCtrl.index);
-
-            // favoritesCtrl.index()
-        // })()
+            // Call the index route for favorites
+            const fav = favoritesAPI.getAll(user)
+        })()
     }, [])
 
     return (

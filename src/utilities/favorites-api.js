@@ -2,8 +2,8 @@ import sendRequest from './send-request';
 
 const BASE_URL = '/api/favorites';
 
-export function getAll() {
-  return sendRequest(BASE_URL);
+export function getAll(user) {
+  return sendRequest(BASE_URL, 'GET', user);
 }
 
 export function getById(id) {
@@ -18,5 +18,5 @@ export function addToFavorites(animalData, user) {
     user: user
   }
   console.log(data)
-  return sendRequest(BASE_URL, 'POST', data)
+  return sendRequest(`${BASE_URL}/create`, 'POST', data)
 }
