@@ -83,10 +83,6 @@ export default function DetailPage({ user }) {
                             :
                             <button onClick={onFavorite}>Unfavorite ♡</button>
                         }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
                     </div>
                 </aside>
             </div>
@@ -100,9 +96,7 @@ export default function DetailPage({ user }) {
                         <input type="submit" />
                     </form>
                     }
-                    
             </p>
         </div>
-
     )
 }
