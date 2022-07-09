@@ -11,8 +11,8 @@ module.exports = {
 async function index(req, res) {
     // Baby step
     console.log('Running index page for favorites')
-    console.log(req.body.name)
-    const currentUser = User.findOne({ name: req.body.name }, (error, user) => {
+    console.log(req.body.user.name)
+    const currentUser = User.findOne({ name: req.body.user.name }, (error, user) => {
         if (error) {
             console.log(error)
             res.json(error)
@@ -30,7 +30,9 @@ async function show(req, res) {
     // Baby step
     console.log('Running show page for favorites')
 
-    const currentUser = await User.findOne({ name: req.body.name }, (error, user) => {
+    // const currentUser = 
+    // await 
+    User.findOne({ name: req.body.user.name }, (error, user) => {
         if (error) {
             console.log(error)
             res.json(error)
@@ -62,7 +64,7 @@ async function create(req, res) {
     // Baby step
     console.log('Running create route for favorites')
     // console.log(req.body)
-    console.log(req.body.user.name)
+    console.log(req.body.user.user.name)
 
     const favorite = await Favorite.create({
         id: req.body.animalData.id,
@@ -84,7 +86,7 @@ async function create(req, res) {
         else {
             console.log('created Favorite')
             // console.log(favorite)
-            User.updateOne({ name: req.body.user.name },
+            User.updateOne({ name: req.body.user.user.name },
                 {
                     $addToSet: {
                         favorites: favorite

@@ -19,10 +19,10 @@ export default async function sendRequest(url, method = 'GET', payload = null) {
 
   console.log('url')
   console.log(url)
-  console.log('method')
-  console.log(method)
-  console.log('options')
+  console.log('method (options)')
   console.log(options)
+  console.log('paylod (user)')
+  console.log(payload)
 
   const res = await fetch(url, options);
   // res.ok will be false if the status code set to 4xx in the controller action

@@ -3,7 +3,9 @@ import sendRequest from './send-request';
 const BASE_URL = '/api/favorites';
 
 export function getAll(user) {
-  return sendRequest(BASE_URL, 'POST', user);
+  console.log('Running favorites-api getAll')
+  console.log(user)
+  return sendRequest(BASE_URL, 'GET', user);
 }
 
 export function getById(id, user) {
