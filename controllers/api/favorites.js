@@ -11,7 +11,7 @@ module.exports = {
 async function index(req, res) {
     // Baby step
     console.log('Running index page for favorites')
-    console.log(req.body.user.name)
+    console.log(req.body.name)
     const user = 'lel'
     const favorites = await Favorite.find({}).sort('name').exec()
     // re-sort based upon the sortOrder of the categories
