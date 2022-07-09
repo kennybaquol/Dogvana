@@ -22,10 +22,11 @@ export default function Favorites({ user }) {
                 <>
                     {favorites.map(animal => (
                         <div key={animal.id}>
-                            <Link to={`/animalCards/${animal.id}`} className="available-pet-card">
+                            <Link to={`/favorites/${animal.id}`} className="available-pet-card">
                                 <img className="available-pet-card-image" src={animal.photo} />
                             </Link>
                             <br />
+                            <h3>{animal.note}</h3>
                         </div>
                     ))}
                 </>

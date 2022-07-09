@@ -4,12 +4,6 @@ const { Schema, model } = mongoose
 const SALT_ROUNDS = 6
 const bcrypt = require('bcrypt')
 
-// Make note schema
-const noteSchema = new Schema({
-    comment: String,
-    // *ENTER THE REST HERE*
-})
-
 // Make favorites schema
 const favoritesSchema = new Schema({
     id: String,
@@ -22,7 +16,7 @@ const favoritesSchema = new Schema({
     colors: [],
     description: String,
     contact: [],
-    note: [{ type: noteSchema }]
+    note: String
 })
 
 const userSchema = new Schema({

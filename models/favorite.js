@@ -10,12 +10,6 @@ const mongoose = require('mongoose')
 // pull schema and model from mongoose
 const { Schema, model } = mongoose
 
-// Make note schema
-const noteSchema = new Schema({
-    comment: String,
-    // *ENTER THE REST HERE*
-})
-
 // Make favorites schema
 const favoritesSchema = new Schema({
     id: String,
@@ -28,7 +22,7 @@ const favoritesSchema = new Schema({
     colors: [],
     description: String,
     contact: [],
-    note: [{ type: noteSchema }]
+    note: String
 })
 
 // make Favorite model

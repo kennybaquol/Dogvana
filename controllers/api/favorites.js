@@ -15,19 +15,14 @@ async function index(req, res) {
     const currentUser = User.findOne({ name: req.body.name }, (error, user) => {
         if (error) {
             console.log(error)
+            res.json(error)
         }
         else {
             console.log('Found the current user')
             console.log('# of favorites that should pop up: ' + user.favorites.length)
             res.json(user.favorites)
-            // res.json(user)
-            // const favorites = await user.Favorite.find({}).sort('name').exec()
         }
     })
-    // console.log(currentUser.favorites)
-    // re-sort based upon the sortOrder of the categories
-    // animalCards.sort((a, b) => a.category.sortOrder - b.category.sortOrder);
-    // res.json('hi')
 }
 
 // Show route
@@ -56,10 +51,12 @@ async function create(req, res) {
         gender: req.body.animalData.gender,
         colors: [req.body.animalData.colors.primary, req.body.animalData.colors.secondary, req.body.animalData.colors.tertiary],
         description: req.body.animalData.description,
-        contact: [req.body.animalData.contact.email, req.body.animalData.contact.phone]
+        contact: [req.body.animalData.contact.email, req.body.animalData.contact.phone],
+        note: "Enter a personal note for yourself here!"
     }, (error, favorite) => {
         if (error) {
             console.log(error)
+            res.json(error)
         }
         else {
             console.log('created Favorite')
@@ -73,9 +70,11 @@ async function create(req, res) {
 
                     if (error) {
                         console.log(error)
+                        res.json(error)
                     }
                     else {
                         console.log('Successfully added favorite to user')
+                        res.json(favorite)
                     }
                 }
             )
@@ -118,5 +117,5 @@ async function create(req, res) {
     // req.body.user = req.user._id
     // const favorite = Favorite.create(req.body)
     // const favorite = 'hello'
-    res.json(favorite)
+    // res.json(favorite)
 }
