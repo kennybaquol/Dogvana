@@ -34,7 +34,7 @@ export default function DetailPage({ user }) {
 
     useEffect(() => {
         (async () => {
-            const result = await favoritesAPI.getById(id, user);
+            const result = await favoritesAPI.getById(id);
             console.log(result)
             setAnimalData(result)
             setLoading(false)

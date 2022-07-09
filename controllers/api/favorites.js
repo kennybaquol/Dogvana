@@ -32,27 +32,27 @@ async function show(req, res) {
 
     // const currentUser = 
     // await 
-    User.findOne({ name: req.body.user.name }, (error, user) => {
+    User.findOne({ name: req.user.name }, (error, user) => {
         if (error) {
             console.log(error)
             res.json(error)
         }
         else {
             console.log('Found the current user')
+            console.log(user)
             const id = req.params.id
             console.log('Looking for id of: ' + id)
-            const exists = false
+            let exists = false
             for (let i = 0; i < user.favorites.length; i++) {
-                if (user.favorites[i] === id) {
+                console.log(user.favorites[i])
+                if (user.favorites[i].id === id) {
                     console.log('WE GOT EM')
                     exists = true
-                    break
+                    res.json(user.favorites[i])
+                    // break
                 }
             }
-            if (exists === true) {
-                res.json(user.favorites[i])
-            }
-            else {
+            if (exists === false) {
                 res.json(user.favorites)
             }
         }
