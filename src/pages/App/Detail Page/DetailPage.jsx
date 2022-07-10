@@ -21,6 +21,10 @@ export default function DetailPage({ user }) {
         return apiResult
     }
 
+    const getFavorites = () => {
+        
+    }
+
     const onFavorite = () => {
         if (!favorite) setFavorite(true)
         else setFavorite(false)
