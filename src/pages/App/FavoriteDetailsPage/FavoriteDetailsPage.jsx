@@ -42,14 +42,15 @@ export default function DetailPage({ user }) {
 
     }
 
-    const noteChange = (event) => {
+    const noteChange = async (event) => {
+        event.preventDefault()
         if (!note) setNote(true)
         else {
             setNote(false)
             console.log('user is done entering the note. now attempting to update')
             // const note = event.target.value
             console.log(newNote.note)
-            favoritesAPI.updateNote(id, newNote.note)
+            await favoritesAPI.updateNote(id, newNote)
         }
     }
 

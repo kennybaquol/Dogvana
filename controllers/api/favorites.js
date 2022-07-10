@@ -125,12 +125,13 @@ async function update(req, res) {
                 'favorites.$.note': req.body.note
 
             }
-        }, (error, user) => {
+        }, (error) => {
             if (error) {
                 console.log(error)
             }
             else {
-                res.redirect(`/albums/${albumId}/edit`)
+                console.log('Updated note successfully')
+                res.json(error) // Maybe change?
             }
         }
     )
@@ -151,13 +152,13 @@ async function destroy(req, res) {
                     id: req.params.id
                 }
             }
-        }, (error, user) => {
+        }, (error) => {
             if (error) {
                 console.log(error)
                 res.json(error)
             } else {
                 console.log('Deleted from favorites successfully')
-                res.json(error)
+                res.json(error) // Maybe change?
             }
         }
     )
