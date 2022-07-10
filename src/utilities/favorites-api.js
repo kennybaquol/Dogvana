@@ -21,3 +21,8 @@ export function addToFavorites(animalData, user) {
   console.log(data)
   return sendRequest(`${BASE_URL}/create`, 'POST', data)
 }
+
+export function removeFromFavorites(id) {
+  console.log('running removeFromFavorites in utilities/favorites-api !')
+  return sendRequest(`${BASE_URL}/${id}`, 'DELETE')
+}
