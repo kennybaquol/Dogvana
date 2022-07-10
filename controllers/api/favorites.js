@@ -11,8 +11,8 @@ module.exports = {
 async function index(req, res) {
     // Baby step
     console.log('Running index page for favorites')
-    console.log(req.body.name)
-    const currentUser = User.findOne({ name: req.body.name }, (error, user) => {
+    console.log(req.user.name)
+    const currentUser = User.findOne({ name: req.user.name }, (error, user) => {
         if (error) {
             console.log(error)
             res.json(error)
@@ -30,27 +30,29 @@ async function show(req, res) {
     // Baby step
     console.log('Running show page for favorites')
 
-    const currentUser = await User.findOne({ name: req.body.name }, (error, user) => {
+    // const currentUser = 
+    // await 
+    User.findOne({ name: req.user.name }, (error, user) => {
         if (error) {
             console.log(error)
             res.json(error)
         }
         else {
             console.log('Found the current user')
+            console.log(user)
             const id = req.params.id
             console.log('Looking for id of: ' + id)
-            const exists = false
+            let exists = false
             for (let i = 0; i < user.favorites.length; i++) {
-                if (user.favorites[i] === id) {
+                console.log(user.favorites[i])
+                if (user.favorites[i].id === id) {
                     console.log('WE GOT EM')
                     exists = true
-                    break
+                    res.json(user.favorites[i])
+                    // break
                 }
             }
-            if (exists === true) {
-                res.json(user.favorites[i])
-            }
-            else {
+            if (exists === false) {
                 res.json(user.favorites)
             }
         }
@@ -62,7 +64,7 @@ async function create(req, res) {
     // Baby step
     console.log('Running create route for favorites')
     // console.log(req.body)
-    console.log(req.body.user.name)
+    console.log(req.body.user.user.name)
 
     const favorite = await Favorite.create({
         id: req.body.animalData.id,
@@ -84,7 +86,7 @@ async function create(req, res) {
         else {
             console.log('created Favorite')
             // console.log(favorite)
-            User.updateOne({ name: req.body.user.name },
+            User.updateOne({ name: req.body.user.user.name },
                 {
                     $addToSet: {
                         favorites: favorite
