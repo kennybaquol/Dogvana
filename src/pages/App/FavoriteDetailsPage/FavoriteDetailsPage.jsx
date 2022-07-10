@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import '../Detail Page/DetailPage.css'
 import * as favoritesAPI from '../../../utilities/favorites-api'
-// const petfinder = require("@petfinder/petfinder-js");
 
 export default function DetailPage({ user }) {
     const { id } = useParams()
@@ -15,17 +14,6 @@ export default function DetailPage({ user }) {
     function handleChange(event) {
         setNewNote({ ...newNote, [event.target.name]: event.target.value })
     }
-
-    // const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
-
-    // const apiSecret = 'YELMxB6N6bVaiMEz0f7GqqccmyF8bu04YiXyvAg8'
-
-    // const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
-
-    // async function getAnimal(animalId) {
-    //     let apiResult = await client.animal.show(animalId)
-    //     return apiResult
-    // }
 
     // *MAKE AN UNFAVORITE HANDLE*
     const onFavorite = () => {
@@ -48,9 +36,15 @@ export default function DetailPage({ user }) {
         else {
             setNote(false)
             console.log('user is done entering the note. now attempting to update')
-            // const note = event.target.value
             console.log(newNote.note)
             await favoritesAPI.updateNote(id, newNote)
+            
+            // Update animalData with new note
+            const result = await favoritesAPI.getById(id);
+            console.log(result)
+            setAnimalData(result)
+            setLoading(false)
+            setNewNote(animalData.note)
         }
     }
 
@@ -60,6 +54,7 @@ export default function DetailPage({ user }) {
             console.log(result)
             setAnimalData(result)
             setLoading(false)
+            setNewNote(animalData.note)
         })()
     }, [])
 
