@@ -5,6 +5,7 @@ module.exports = {
     index,
     show,
     create,
+    update,
     destroy
 }
 
@@ -109,7 +110,32 @@ async function create(req, res) {
 }
 
 // Update route
+async function update(req, res) {
+    // Baby step
+    console.log('Running update route for favorites')
 
+    // User.updateOne({ name: req.user.name }, (error, user) => {
+    User.updateOne({
+        name: req.user.name,
+        'favorites.id': req.params.id
+    },
+        {
+            $set: {
+                // This is probably WRONG
+                'favorites.$.note': req.body.note
+
+            }
+        }, (error, user) => {
+            if (error) {
+                console.log(error)
+            }
+            else {
+                res.redirect(`/albums/${albumId}/edit`)
+            }
+        }
+    )
+// })
+}
 
 // Delete route
 async function destroy(req, res) {

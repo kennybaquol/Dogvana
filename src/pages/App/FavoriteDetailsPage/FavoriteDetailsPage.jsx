@@ -9,6 +9,12 @@ export default function DetailPage({ user }) {
     const [loading, setLoading] = useState(true)
     const [animalData, setAnimalData] = useState([])
     const [favorite, setFavorite] = useState(false)
+    const [note, setNote] = useState(false)
+    const [newNote, setNewNote] = useState('')
+
+    function handleChange(event) {
+        setNewNote({ ...newNote, [event.target.name]: event.target.value })
+    }
 
     // const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
 
@@ -34,6 +40,17 @@ export default function DetailPage({ user }) {
             const unFav = favoritesAPI.removeFromFavorites(id)
         }
 
+    }
+
+    const noteChange = (event) => {
+        if (!note) setNote(true)
+        else {
+            setNote(false)
+            console.log('user is done entering the note. now attempting to update')
+            // const note = event.target.value
+            console.log(newNote.note)
+            favoritesAPI.updateNote(id, newNote.note)
+        }
     }
 
     useEffect(() => {
@@ -89,6 +106,17 @@ export default function DetailPage({ user }) {
                     </div>
                 </aside>
             </div>
+            <p className='note'>
+                    <h1>Notes</h1>
+                    {!note ? 
+                    <button onClick={noteChange}>Add a Note</button>
+                        :   
+                    <form onSubmit={noteChange}>
+                        <input type="text" name="note" onChange={handleChange}/>
+                        <input type="submit" />
+                    </form>
+                    }
+            </p>
         </div>
 
     )

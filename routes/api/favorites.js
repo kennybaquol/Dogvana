@@ -12,7 +12,7 @@ router.post('/create', favoritesCtrl.create)
 router.get('/:id', favoritesCtrl.show)
 
 // PUT /api/favorites/:id
-// router.get('/:id', favoritesCtrl.update)
+router.put('/:id', favoritesCtrl.update)
 
 // DELETE /api/favorites/:id
 router.delete('/:id', favoritesCtrl.destroy)
