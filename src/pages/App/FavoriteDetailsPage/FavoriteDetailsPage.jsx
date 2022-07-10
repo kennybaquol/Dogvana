@@ -28,7 +28,11 @@ export default function DetailPage({ user }) {
             // Call the create route for favorites
             const fav = favoritesAPI.addToFavorites(animalData, user)
         }
-        else setFavorite(false)
+        else {
+            setFavorite(false)
+            // Call the delete route for favorites
+            const unFav = favoritesAPI.removeFromFavorites(id)
+        }
 
     }
 
