@@ -110,39 +110,12 @@ async function create(req, res) {
 
 // Update route
 
+
 // Delete route
-// Index route
 async function destroy(req, res) {
     // Baby step
     console.log('Running delete page for favorites')
     console.log(req.user.name)
-
-    // Find the user first, then the id of the current animal
-    // User.findOne({ name: req.user.name }, (error, user) => {
-    //     if (error) {
-    //         console.log(error)
-    //         res.json(error)
-    //     }
-    //     else {
-    //         console.log('Found the current user')
-    //         console.log(user)
-    //         const id = req.params.id
-    //         console.log('Looking for id of: ' + id)
-    //         let exists = false
-    //         for (let i = 0; i < user.favorites.length; i++) {
-    //             // console.log(user.favorites[i])
-    //             if (user.favorites[i].id === id) {
-    //                 console.log('WE GOT EM')
-    //                 exists = true
-
-    //                 res.json(user.favorites[i])
-    //             }
-    //         }
-    //         if (exists === false) {
-    //             res.json(user.favorites)
-    //         }
-    //     }
-    // })
 
     // Find the user's favorites, and delete the current animal from it
     User.updateOne({ name: req.user.name },
