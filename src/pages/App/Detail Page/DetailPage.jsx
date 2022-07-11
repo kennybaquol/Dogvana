@@ -28,6 +28,10 @@ export default function DetailPage({ user }) {
         return apiResult
     }
 
+    const getFavorites = () => {
+        
+    }
+
     const onFavorite = () => {
         if (!favorite) {
             setFavorite(true)
@@ -108,6 +112,7 @@ export default function DetailPage({ user }) {
                     </div>
                 </aside>
             </div>
+            { favorite ?
             <p className='note'>
                     <h1>Notes</h1>
                     {!note ? 
@@ -117,8 +122,11 @@ export default function DetailPage({ user }) {
                         <input type="text" name="note" onChange={handleChange}/>
                         <input type="submit" />
                     </form>
-                    }
+                    }  
             </p>
+            :
+            <p></p>
+            }
         </div>
     )
 }

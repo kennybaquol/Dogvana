@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import '../Detail Page/DetailPage.css'
 import * as favoritesAPI from '../../../utilities/favorites-api'
+import './FavoriteDetailsPage.css'
 
 export default function DetailPage({ user }) {
     const { id } = useParams()
     const [loading, setLoading] = useState(true)
     const [animalData, setAnimalData] = useState([])
-    const [favorite, setFavorite] = useState(false)
+    const [favorite, setFavorite] = useState(true)
     const [note, setNote] = useState(false)
     const [newNote, setNewNote] = useState('')
 
@@ -79,9 +80,6 @@ export default function DetailPage({ user }) {
                     <h3>Meet {animalData.name}</h3>
                     <p>{animalData.description}</p>
                 </article>
-                <article>
-                    <p>{animalData.note}</p>
-                </article>
                 <aside className="contact-info">
                     <div className="contact-card">
                         <legend>Contact</legend>
@@ -101,6 +99,9 @@ export default function DetailPage({ user }) {
                     </div>
                 </aside>
             </div>
+            <article className="animal-note">
+                    <p>{animalData.note}</p>
+                </article>
             <p className='note'>
                 <h1>Notes</h1>
                 {!note ?
