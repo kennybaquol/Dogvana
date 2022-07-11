@@ -16,12 +16,12 @@ export function updateNote(id, note) {
   return sendRequest(`${BASE_URL}/${id}`, 'PUT', note);
 }
 
-export function addToFavorites(animalData, user) {
+export function addToFavorites(animalData, note) {
   console.log('running addToFavorites in utilities/favorites-api !')
-  console.log(user)
+  console.log(note)
   const data = {
     animalData: animalData,
-    user: user
+    note: note
   }
   console.log(data)
   return sendRequest(`${BASE_URL}/create`, 'POST', data)

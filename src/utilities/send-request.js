@@ -21,7 +21,7 @@ export default async function sendRequest(url, method = 'GET', payload = null) {
   console.log(url)
   console.log('method (options)')
   console.log(options)
-  console.log('paylod (user)')
+  console.log('payload (body)')
   console.log(payload)
 
   const res = await fetch(url, options);

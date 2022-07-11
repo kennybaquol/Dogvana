@@ -105,10 +105,10 @@ export default function DetailPage({ user }) {
             <p className='note'>
                     <h1>Notes</h1>
                     {!note ? 
-                    <button onClick={noteChange}>Add a Note</button>
+                    <button onClick={noteChange}>Add/Edit Note</button>
                         :   
                     <form onSubmit={noteChange}>
-                        <input type="text" name="note" onChange={handleChange}/>
+                        <input type="text" placeholder={animalData.note} name="note" onChange={handleChange}/>
                         <input type="submit" />
                     </form>
                     }

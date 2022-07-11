@@ -66,7 +66,7 @@ async function create(req, res) {
     // Baby step
     console.log('Running create route for favorites')
     // console.log(req.body)
-    console.log(req.body.user.user.name)
+    console.log(req.user.name)
 
     const favorite = await Favorite.create({
         id: req.body.animalData.id,
@@ -79,7 +79,7 @@ async function create(req, res) {
         colors: [req.body.animalData.colors.primary, req.body.animalData.colors.secondary, req.body.animalData.colors.tertiary],
         description: req.body.animalData.description,
         contact: [req.body.animalData.contact.email, req.body.animalData.contact.phone],
-        note: "Enter a personal note for yourself here!"
+        note: req.body.note.note
     }, (error, favorite) => {
         if (error) {
             console.log(error)
@@ -88,7 +88,7 @@ async function create(req, res) {
         else {
             console.log('created Favorite')
             // console.log(favorite)
-            User.updateOne({ name: req.body.user.user.name },
+            User.updateOne({ name: req.user.name },
                 {
                     $addToSet: {
                         favorites: favorite

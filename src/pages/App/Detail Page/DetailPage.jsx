@@ -10,6 +10,12 @@ export default function DetailPage({ user }) {
     const [animalData, setAnimalData] = useState([])
     const [favorite, setFavorite] = useState(false)
     const [note, setNote] = useState(false)
+    const [newNote, setNewNote] = useState('')
+
+    function handleChange(event) {
+        setNewNote({ ...newNote, [event.target.name]: event.target.value })
+        console.log(newNote)
+    }
 
     const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
 
@@ -26,7 +32,7 @@ export default function DetailPage({ user }) {
         if (!favorite) {
             setFavorite(true)
             // Call the create route for favorites
-            const fav = favoritesAPI.addToFavorites(animalData, user)
+            const fav = favoritesAPI.addToFavorites(animalData, newNote)
         }
         else {
             setFavorite(false)
@@ -35,9 +41,22 @@ export default function DetailPage({ user }) {
         }
     }
 
-    const noteChange = () => {
+    const noteChange = async (event) => {
+        event.preventDefault()
         if (!note) setNote(true)
-        else setNote(false)
+        else {
+            setNote(false)
+            // console.log('user is done entering the note. now attempting to update')
+            // console.log(newNote.note)
+            // await favoritesAPI.updateNote(id, newNote)
+            
+            // // Update animalData with new note
+            // const result = await favoritesAPI.getById(id);
+            // console.log(result)
+            // setAnimalData(result)
+            // setLoading(false)
+            // setNewNote(animalData.note)
+        }
     }
 
     useEffect(() => {
@@ -95,7 +114,7 @@ export default function DetailPage({ user }) {
                     <button onClick={noteChange}>Add a Note</button>
                         :   
                     <form onSubmit={noteChange}>
-                        <input type="text" />
+                        <input type="text" name="note" onChange={handleChange}/>
                         <input type="submit" />
                     </form>
                     }
