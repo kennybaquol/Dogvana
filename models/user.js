@@ -1,7 +1,23 @@
 const mongoose = require('mongoose')
-const { Schema } = mongoose
+// const { Schema } = mongoose
+const { Schema, model } = mongoose
 const SALT_ROUNDS = 6
 const bcrypt = require('bcrypt')
+
+// Make favorites schema
+const favoritesSchema = new Schema({
+    id: String,
+    photo: String,
+    name: String,
+    breeds: [],
+    age: String,
+    size: String,
+    gender: String,
+    colors: [],
+    description: String,
+    contact: [],
+    note: String
+})
 
 const userSchema = new Schema({
     name: {type: String, required: true},
@@ -17,12 +33,17 @@ const userSchema = new Schema({
         trim: true,
         minLength: 3,
         required: true
+<<<<<<< HEAD
     }, 
         favorites: [{
             ObjectID: String
         }],
         
     
+=======
+    },
+    favorites: [{ type: favoritesSchema }]
+>>>>>>> main
 }, {
     timestamps: true,
     toJSON: {
@@ -39,4 +60,8 @@ userSchema.pre('save', async function(next) {
     return next()
 })
 
-module.exports = mongoose.model('User', userSchema)
+const User = model("User", userSchema)
+
+// module.exports = mongoose.model('User', userSchema)
+
+module.exports = User
