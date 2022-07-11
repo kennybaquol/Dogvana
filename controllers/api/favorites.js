@@ -63,10 +63,6 @@ async function show(req, res) {
 
 // Create route
 async function create(req, res) {
-    // Baby step
-    console.log('Running create route for favorites')
-    // console.log(req.body)
-    console.log(req.body.user.user.name)
 
     const favorite = await Favorite.create({
         id: req.body.animalData.id,
