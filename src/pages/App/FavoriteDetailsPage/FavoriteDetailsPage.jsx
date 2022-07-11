@@ -27,7 +27,6 @@ export default function DetailPage({ user }) {
             // Call the delete route for favorites
             const unFav = favoritesAPI.removeFromFavorites(id)
         }
-
     }
 
     const noteChange = async (event) => {
@@ -38,7 +37,7 @@ export default function DetailPage({ user }) {
             console.log('user is done entering the note. now attempting to update')
             console.log(newNote.note)
             await favoritesAPI.updateNote(id, newNote)
-            
+
             // Update animalData with new note
             const result = await favoritesAPI.getById(id);
             console.log(result)
@@ -70,13 +69,13 @@ export default function DetailPage({ user }) {
                 </Link>
             </div>
             <div className="image-album">
-                <img src={animalData.photo} alt="dog picture" />
+                <img src={animalData.photos[0].full} alt="dog picture" />
             </div>
             <div className="animal-detail-container">
                 <article className="animal-detail">
                     <h1 className="pet-name">{animalData.name}</h1>
-                    <span>{animalData.breeds} • {animalData.contact},{animalData.contact}</span>
-                    <span>{animalData.age} • {animalData.size} • {animalData.gender} • {animalData.colors} {animalData.colors}</span>
+                    <span>{animalData.breeds.primary} • {animalData.contact.address.city},{animalData.contact.address.state}</span>
+                    <span>{animalData.age} • {animalData.size} • {animalData.gender} • {animalData.colors.primary} {animalData.colors.secondary}</span>
                     <h3>Meet {animalData.name}</h3>
                     <p>{animalData.description}</p>
                 </article>
@@ -86,11 +85,11 @@ export default function DetailPage({ user }) {
                 <aside className="contact-info">
                     <div className="contact-card">
                         <legend>Contact</legend>
-                        <span>{animalData.contact}</span>
+                        <span>{animalData.contact.email}</span>
                         <br />
-                        <span> {animalData.contact}</span>
+                        <span> {animalData.contact.phone}</span>
                         <br />
-                        <span>{animalData.contact}, {animalData.contact} {animalData.contact}</span>
+                        <span>{animalData.contact.address.city}, {animalData.contact.address.state} {animalData.contact.address.postcode}</span>
                     </div>
                     <div className='favorite-button'>
                         {!favorite ?
@@ -103,15 +102,15 @@ export default function DetailPage({ user }) {
                 </aside>
             </div>
             <p className='note'>
-                    <h1>Notes</h1>
-                    {!note ? 
+                <h1>Notes</h1>
+                {!note ?
                     <button onClick={noteChange}>Add/Edit Note</button>
-                        :   
+                    :
                     <form onSubmit={noteChange}>
-                        <input type="text" placeholder={animalData.note} name="note" onChange={handleChange}/>
+                        <input type="text" placeholder={animalData.note} name="note" onChange={handleChange} />
                         <input type="submit" />
                     </form>
-                    }
+                }
             </p>
         </div>
 

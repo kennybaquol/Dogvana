@@ -13,15 +13,15 @@ const { Schema, model } = mongoose
 // Make favorites schema
 const favoritesSchema = new Schema({
     id: String,
-    photo: String,
+    photos: [],
     name: String,
-    breeds: [],
+    breeds: {},
     age: String,
     size: String,
     gender: String,
-    colors: [],
+    colors: {},
     description: String,
-    contact: [],
+    contact: {},
     note: String
 })
 
