@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import * as favoritesAPI from "../../../utilities/favorites-api"
 import { Link } from "react-router-dom"
+import './Favorites.css'
 
 export default function Favorites({ user }) {
     const [favorites, setFavorites] = useState([])
@@ -18,22 +19,23 @@ export default function Favorites({ user }) {
 
     return (
         <>
-            <h1>favorites</h1>
+            <h1>Favorites</h1>
+            <div className="favorite-pet-container">
             {favorites.length > 0 ?
                 <>
                     {favorites.map(animal => (
                         <div key={animal.id}>
-                            <Link to={`/favorites/${animal.id}`} className="available-pet-card">
-                                <img className="available-pet-card-image" src={animal.photo} />
+                            <Link to={`/favorites/${animal.id}`} className="favorite-pet-card">
+                                <img className="favorite-pet-card-image" src={animal.photo} />
                             </Link>
-                            <br />
-                            <h3>{animal.note}</h3>
+                            <div className="favorite-pet-card-name">{animal.name}</div>
                         </div>
                     ))}
                 </>
                 :
                 <h3>No favorites found</h3>
             }
+            </div>
         </>
     )
 }
