@@ -1,4 +1,3 @@
-import { GoogleLogin } from 'react-google-login';
 import * as usersService from '../../utilities/users-service';
 import './LoginForm.css'
 import { useState } from 'react';
@@ -10,20 +9,11 @@ export default function LoginForm({ setUser }) {
   });
   const [error, setError] = useState('');
 
-  // For Google login
-  const [loginData, setLoginData] = useState(
-    localStorage.getItem('loginData')
-      ? JSON.parse(localStorage.getItem('loginData'))
-      : null
-  )
-
-  const cId = process.env.CLIENT_URL
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
     setError('');
   }
-
   async function handleSubmit(evt) {
     // Prevent form from being submitted to the server
     evt.preventDefault();
@@ -38,33 +28,6 @@ export default function LoginForm({ setUser }) {
     }
   }
 
-  // For Google login
-  const handleFailure = (result) => {
-    console.log('client id: ' + cId)
-    alert(result)
-  }
-
-  const handleLogin = async (googleData) => {
-    console.log(googleData)
-    // const res = await fetch('/api/google-login', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     token: googleData.tokenId
-    //   }),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-
-    // const data = await res.json()
-    // setLoginData(data)
-    // localStorage.setItem('loginData', JSON.stringify(data))
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem('loginData')
-    setLoginData(null)
-  }
 
   return (
     <div>
