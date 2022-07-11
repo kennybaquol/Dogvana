@@ -1,0 +1,11 @@
+.animal-note{
+    display: flex;
+    background-color: white;
+    border-radius: 15px;
+    width: 35%;
+    padding: 40px 40px;
+    box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+    justify-content: center;
+    align-self: center;
+    margin-left: 30%;
+}

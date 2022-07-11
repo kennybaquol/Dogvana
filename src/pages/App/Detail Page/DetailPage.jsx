@@ -89,6 +89,7 @@ export default function DetailPage({ user }) {
                     </div>
                 </aside>
             </div>
+            { favorite ?
             <p className='note'>
                     <h1>Notes</h1>
                     {!note ? 
@@ -98,8 +99,13 @@ export default function DetailPage({ user }) {
                         <input type="text" />
                         <input type="submit" />
                     </form>
-                    }
+                    }  
             </p>
+
+            :
+
+            <p></p>
+            }
         </div>
     )
 }
