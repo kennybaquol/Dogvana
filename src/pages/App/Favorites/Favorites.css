@@ -1,0 +1,24 @@
+
+.favorite-pet-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 100px 200px;
+}
+
+.favorite-pet-card-image{
+    display: flex;
+    width: 50%;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.favorite-pet-card-name{
+    display: flex;
+    width: 50%;
+    border-radius: 0px 0px 15px 15px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: #6504b5;
+    padding: 20px 0px;
+    box-shadow: 0 1px 3px rgb(77 71 81 / 20%);
+}
