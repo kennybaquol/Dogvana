@@ -2,24 +2,18 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import '../Detail Page/DetailPage.css'
 import * as favoritesAPI from '../../../utilities/favorites-api'
-// const petfinder = require("@petfinder/petfinder-js");
 
 export default function DetailPage({ user }) {
     const { id } = useParams()
     const [loading, setLoading] = useState(true)
     const [animalData, setAnimalData] = useState([])
     const [favorite, setFavorite] = useState(false)
+    const [note, setNote] = useState(false)
+    const [newNote, setNewNote] = useState('')
 
-    // const apiKey = '6nnZCvrBXX6q999g5owZWFAbgJ2psZHtOkgsGYbCs7eo2zWXYb'
-
-    // const apiSecret = 'YELMxB6N6bVaiMEz0f7GqqccmyF8bu04YiXyvAg8'
-
-    // const client = new petfinder.Client({ apiKey: apiKey, secret: apiSecret });
-
-    // async function getAnimal(animalId) {
-    //     let apiResult = await client.animal.show(animalId)
-    //     return apiResult
-    // }
+    function handleChange(event) {
+        setNewNote({ ...newNote, [event.target.name]: event.target.value })
+    }
 
     // *MAKE AN UNFAVORITE HANDLE*
     const onFavorite = () => {
@@ -28,8 +22,30 @@ export default function DetailPage({ user }) {
             // Call the create route for favorites
             const fav = favoritesAPI.addToFavorites(animalData, user)
         }
-        else setFavorite(false)
+        else {
+            setFavorite(false)
+            // Call the delete route for favorites
+            const unFav = favoritesAPI.removeFromFavorites(id)
+        }
 
+    }
+
+    const noteChange = async (event) => {
+        event.preventDefault()
+        if (!note) setNote(true)
+        else {
+            setNote(false)
+            console.log('user is done entering the note. now attempting to update')
+            console.log(newNote.note)
+            await favoritesAPI.updateNote(id, newNote)
+            
+            // Update animalData with new note
+            const result = await favoritesAPI.getById(id);
+            console.log(result)
+            setAnimalData(result)
+            setLoading(false)
+            setNewNote(animalData.note)
+        }
     }
 
     useEffect(() => {
@@ -38,6 +54,7 @@ export default function DetailPage({ user }) {
             console.log(result)
             setAnimalData(result)
             setLoading(false)
+            setNewNote(animalData.note)
         })()
     }, [])
 
@@ -85,6 +102,17 @@ export default function DetailPage({ user }) {
                     </div>
                 </aside>
             </div>
+            <p className='note'>
+                    <h1>Notes</h1>
+                    {!note ? 
+                    <button onClick={noteChange}>Add a Note</button>
+                        :   
+                    <form onSubmit={noteChange}>
+                        <input type="text" name="note" onChange={handleChange}/>
+                        <input type="submit" />
+                    </form>
+                    }
+            </p>
         </div>
 
     )

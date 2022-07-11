@@ -4,7 +4,9 @@ const User = require('../../models/user')
 module.exports = {
     index,
     show,
-    create
+    create,
+    update,
+    destroy
 }
 
 // Index route
@@ -105,42 +107,59 @@ async function create(req, res) {
             )
         }
     })
+}
 
-    // Album.create({
-    //     id: req.body.id,
-    //     title: req.body.title,
-    //     cover_medium: req.body.cover_medium,
-    //     cover_big: req.body.cover_big,
-    //     genre_id: req.body.genre_id,
-    //     artistID: req.body.artistID,
-    //     artistName: req.body.artistName,
-    //     summaries: summary
-    // }, (error, album) => {
-    //     if (error) {
-    //         console.log(error)
-    //     }
-    //     else {
-    //         User.updateOne({ name: req.session.username },
-    //             {
-    //                 $addToSet: {
-    //                     favorites: album
-    //                 }
-    //             }, (error, user) => {
+// Update route
+async function update(req, res) {
+    // Baby step
+    console.log('Running update route for favorites')
 
-    //                 if (error) {
-    //                     console.log(error)
-    //                 }
-    //                 // Redirect to the index page, displaying the newly-added album under the user's favorites
-    //                 else {
-    //                     res.redirect('/albums')
-    //                 }
-    //             }
-    //         )
-    //     }
-    // })
+    // User.updateOne({ name: req.user.name }, (error, user) => {
+    User.updateOne({
+        name: req.user.name,
+        'favorites.id': req.params.id
+    },
+        {
+            $set: {
+                // This is probably WRONG
+                'favorites.$.note': req.body.note
 
-    // req.body.user = req.user._id
-    // const favorite = Favorite.create(req.body)
-    // const favorite = 'hello'
-    // res.json(favorite)
+            }
+        }, (error) => {
+            if (error) {
+                console.log(error)
+            }
+            else {
+                console.log('Updated note successfully')
+                res.json(error) // Maybe change?
+            }
+        }
+    )
+// })
+}
+
+// Delete route
+async function destroy(req, res) {
+    // Baby step
+    console.log('Running delete page for favorites')
+    console.log(req.user.name)
+
+    // Find the user's favorites, and delete the current animal from it
+    User.updateOne({ name: req.user.name },
+        {
+            $pull: {
+                favorites: {
+                    id: req.params.id
+                }
+            }
+        }, (error) => {
+            if (error) {
+                console.log(error)
+                res.json(error)
+            } else {
+                console.log('Deleted from favorites successfully')
+                res.json(error) // Maybe change?
+            }
+        }
+    )
 }
