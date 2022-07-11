@@ -18,6 +18,10 @@ export default function Favorites({ user }) {
 
     return (
         <>
+<<<<<<< HEAD
+        <h1>favorites</h1>
+        <animalCard/>
+=======
             <h1>favorites</h1>
             {favorites.length > 0 ?
                 <>
@@ -34,6 +38,7 @@ export default function Favorites({ user }) {
                 :
                 <h3>No favorites found</h3>
             }
+>>>>>>> main
         </>
     )
 }
